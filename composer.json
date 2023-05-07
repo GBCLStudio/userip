@@ -1,0 +1,41 @@
+{
+  "name": "gbcl/userip",
+  "description": "Geolocation for Flarum",
+  "keywords": [
+    "flarum",
+    "geoip"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/GBCLStudio/geoip/issues",
+    "source": "https://github.com/GBCLStudio/geoip"
+  },
+  "require": {
+    "flarum/core": "^1.6.3",
+    "guzzlehttp/guzzle": "^6.0 || ^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GBCLStudio\\GeoIp\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "GBCLStudio",
+      "email": "gbclstudio@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "extra": {
+    "flarum-extension": {
+      "title": "Geo IP",
+      "category": "feature",
+      "icon": {
+        "name": "fas fa-map-marked-alt",
+        "backgroundColor": "#817aa7",
+        "color": "#fff"
+      }
+    }
+  }
+}
