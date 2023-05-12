@@ -20,14 +20,12 @@ use Flarum\Database\AbstractModel;
  */
 class IpInfo extends AbstractModel
 {
-    /**
-     * @var mixed|string|null
-     */
-    public mixed $address;
+
     protected $table = 'userip_info';
 
     protected $fillable = [
-        'address', 'country_code', 'region', 'isp',
+        'address', 'country_code',
+        'region', 'isp',
     ];
 
 }

@@ -25,7 +25,7 @@ class ServiceResponse implements \JsonSerializable
 
     private ?string $region;
 
-    private ?string $ip;
+    private ?string $address;
 
     public function setCountryCode(?string $country_code): static
     {
@@ -34,9 +34,9 @@ class ServiceResponse implements \JsonSerializable
         return $this;
     }
 
-    public function setAddress(?string $ip): static
+    public function setAddress(?string $address): static
     {
-        $this->ip = $ip;
+        $this->address = $address;
 
         return $this;
     }

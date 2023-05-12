@@ -39,7 +39,7 @@ class GeoIpRepository
     /**
      * @param string|null $ip
      *
-     * @return IpInfo|Builder|Model|object|void
+     * @return IpInfo|Builder|Model|object|void|null
      */
     public function get(?string $ip)
     {
@@ -50,7 +50,7 @@ class GeoIpRepository
         return IpInfo::query()->where('address', $ip)->first() ?? $this->obtain($ip);
     }
 
-    private function obtain(?string $ip): ?IpInfo
+    private function obtain(string $ip): ?IpInfo
     {
         $this->retrieving[] = $ip;
 

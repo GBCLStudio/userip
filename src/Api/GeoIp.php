@@ -34,6 +34,7 @@ class GeoIp
         return (new ServiceResponse())
             ->setCountryCode($body->country_code)
             ->setRegion($body->region ?? 'Unknown')
-            ->setIsp($body->isp);
+            ->setIsp($body->isp)
+            ->setAddress($ip);
     }
 }
