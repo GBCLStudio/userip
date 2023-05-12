@@ -28,6 +28,12 @@ php flarum cache:clear
 
 You just need to open the plugin in the background. :)
 
+## Feature
+
+- Support for websites using CDN
+- Concise, detailed, understandable style
+- No bugs (maybe?)
+
 ## Note
 
 IP domain API is provided by [ip.sb](https://ip.sb)

@@ -8,8 +8,8 @@
   "type": "flarum-extension",
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/GBCLStudio/geoip/issues",
-    "source": "https://github.com/GBCLStudio/geoip"
+    "issues": "https://github.com/GBCLStudio/userip/issues",
+    "source": "https://github.com/GBCLStudio/userip"
   },
   "require": {
     "flarum/core": "^1.6.3",
@@ -29,7 +29,7 @@
   ],
   "extra": {
     "flarum-extension": {
-      "title": "Geo IP",
+      "title": "User IP",
       "category": "feature",
       "icon": {
         "name": "fas fa-map-marked-alt",
