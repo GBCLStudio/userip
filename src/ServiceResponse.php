@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of GBCLStudio Project.
+ *
+ * Copyright (c) 2023 GBCLStudio PHP Project Team.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
 
 namespace GBCLStudio\GeoIp;
 
@@ -8,22 +16,27 @@ class ServiceResponse implements \JsonSerializable
     /**
      * @var string
      */
-    private $country_code;
+    private string $country_code;
 
     /**
      * @var string
      */
-    private $isp;
+    private string $isp;
 
-    /**
-     * @var string
-     */
-    private $isp;
     private ?string $region;
+
+    private ?string $ip;
 
     public function setCountryCode(?string $country_code): static
     {
         $this->country_code = $country_code;
+
+        return $this;
+    }
+
+    public function setAddress(?string $ip): static
+    {
+        $this->ip = $ip;
 
         return $this;
     }
@@ -42,55 +55,16 @@ class ServiceResponse implements \JsonSerializable
         return $this;
     }
 
-    public function toReadable()
-    {
-        $data = 'Unknown';
-        if ($this->region && $this->country_code && $this->isp) {
-            $data = sprintf('%s, %s | %s', 
-            $this->region, 
-            $this->country_code, 
-            $this->isp
-            );
-        }
-        elseif ($this->region && $this->country_code) {
-            $data = sprintf('%s, %s', 
-            $this->region, 
-            $this->country_code
-            );
-        }
-
-        elseif ($this->region && $this->isp) {
-            $data = sprintf('%s | %s', 
-            $this->region, 
-            $this->isp
-            );
-        }
-
-        elseif ($this->country_code && $this->isp) {
-            $data = sprintf('%s | %s', 
-            $this->country_code, 
-            $this->isp
-            );
-        }
-
-        elseif ($this->region) {
-            $data = $this->region;
-        }
-
-        elseif ($this->country_code) {
-            $data = $this->country_code;
-        }
-
-        elseif ($this->isp) {
-            $data = $this->isp;
-        }
-        return $data;
-    }
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return get_object_vars($this);
+    }
+
+    public function toJson()
+    {
+        return json_decode(json_encode($this), true);
     }
 }

@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of GBCLStudio Project.
+ *
+ * Copyright (c) 2023 GBCLStudio PHP Project Team.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
 
 namespace GBCLStudio\GeoIp\Repositories;
 
@@ -22,7 +30,7 @@ class GeoIpRepository
 
     protected array $retrieving = [];
 
-    public function __construct(GeoIP $geoip, Repository $cache)
+    public function __construct(GeoIp $geoip, Repository $cache)
     {
         $this->geoip = $geoip;
         $this->cache = $cache;
@@ -54,7 +62,7 @@ class GeoIpRepository
             $data->address = $ip;
             $data->fill($response->toJson());
 
-            if (!$response->fake && !IpInfo::query()->where('address', $ip)->exists()) {
+            if (!IpInfo::query()->where('address', $ip)->exists()) {
                 $data->save();
             }
         }

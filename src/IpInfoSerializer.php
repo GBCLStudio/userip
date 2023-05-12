@@ -1,11 +1,10 @@
 <?php
-
 /*
- * This file is part of fof/geoip.
+ * This file is part of GBCLStudio Project.
  *
- * Copyright (c) FriendsOfFlarum.
+ * Copyright (c) 2023 GBCLStudio PHP Project Team.
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
@@ -18,7 +17,7 @@ class IpInfoSerializer extends AbstractSerializer
     /**
      * {@inheritdoc}
      */
-    protected $type = 'ip_info';
+    protected $type = 'userip_info';
 
     /**
      * {@inheritdoc}
@@ -26,10 +25,9 @@ class IpInfoSerializer extends AbstractSerializer
     protected function getDefaultAttributes($model): array
     {
         return [
-            'countryCode'       => $model->country_code,
-            'regionCode'           => $model->reg_code,
-            'isp'               => $model->isp,
-            'organization'      => $model->organization,
+            'gbcl_countryCode'       => $model->country_code,
+            'gbcl_region'            => $model->region,
+            'gbcl_isp'               => $model->isp,
         ];
     }
 

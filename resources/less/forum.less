@@ -1,0 +1,67 @@
+/*
+ * This file is part of GBCLStudio Project.
+ *
+ * Copyright (c) 2023 GBCLStudio PHP Project Team.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
+input#cpu {
+  width: 400px;
+}
+fieldset.pc-specs {
+  display: inline-block;
+  align-items: center;
+  padding: 10px;
+  margin: 0;
+}
+label.pc-specs-label {
+  margin-right: 8px;
+  margin-left: 5px;
+}
+button.Button.Button--primary.pc-specs {
+  margin-top: 8px;
+  padding: 7px;
+  margin-left: 0px;
+}
+.userIp-container {
+  flex-wrap: wrap;
+  display: flex;
+}
+.ip-locate {
+  margin-left: 10px;
+  margin-bottom: 6px;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid #cad0db;
+  border-radius: 6px;
+}
+.Post-footer {
+  margin-bottom: 90px;
+}
+
+body when (@config-dark-mode = true) {
+  .pc-specs {
+    border: 1px solid #1b2028;
+  }
+}
+@media (max-width: 991px){
+  .Post-footer {
+    margin-bottom: 150px;
+  }
+}
+@media (max-width: 767px){
+  .Post-footer {
+    margin-bottom: 90px;
+  }
+}
+@media (max-width: 634px){
+  .Post-footer {
+    margin-bottom: 110px;
+  }
+}
+@media (max-width: 471px){
+  .Post-footer {
+    margin-bottom: 150px;
+  }
+}

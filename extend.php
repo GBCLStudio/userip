@@ -9,14 +9,17 @@
  */
 
 namespace GBCLStudio\GeoIp;
+use Flarum\Api\Serializer\PostSerializer;
 use Flarum\Extend;
+use Flarum\Api\Controller;
 use Flarum\Post\Post;
-use GBCLStudio\GeoIp\Api\GeoIp;
+use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
 
 return [
     
     (new Extend\Frontend('forum'))
-        ->js(__DIR__.'/js/dist/forum.js'),
+        ->js(__DIR__.'/js/dist/forum.js')
+        ->css(__DIR__ . '/resources/less/forum.less'),
 
     new Extend\Locales(__DIR__.'/resources/locale'),
 
@@ -27,23 +30,31 @@ return [
     (new Extend\Middleware('api'))
         ->add(Middleware\ProcessIp::class),
 
-    (new Extend\ApiSerializer(UserSerializer::class))
-    ->attribute('ipLocation', function ($serializer, $user) {
-        return $user->ip_location;
+    (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
+        return $model->hasOne(IpInfo::class, 'address', 'ip_address')
+            ->withDefault(function ($instance, $submodel) {
+                return resolve(GeoIpRepository::class)->get($submodel->ip_address);
+            });
     }),
 
-    (new Extend\Event())
-    ->listen(LoggedIn::class, function (Dispatcher $events, LoggedIn $event) {
-        $user = $event->user;
-        $ipAddress = $event->request->getAttribute('ipAddress');
+    (new Extend\ApiSerializer(PostSerializer::class))
+        ->relationship('userip_info', function (PostSerializer $serializer, Post $model) {
+            return $serializer->hasOne($model, IpInfoSerializer::class, 'userip_info');
+        }),
 
-        $geoIp = new GeoIp();
+    (new Extend\ApiController(Controller\ListPostsController::class))
+        ->addInclude('userip_info'),
 
-        $response = $geoIp->get($ipAddress);
+    (new Extend\ApiController(Controller\ShowPostController::class))
+        ->addInclude('userip_info'),
 
-        $user->ip_location = $response->toReadable();
-        $user->save();
+    (new Extend\ApiController(Controller\CreatePostController::class))
+        ->addInclude('userip_info'),
 
-    })
+    (new Extend\ApiController(Controller\UpdatePostController::class))
+        ->addInclude('userip_info'),
+
+    (new Extend\ApiController(Controller\ShowDiscussionController::class))
+        ->addInclude('posts.userip_info'),
 
 ];
