@@ -1,4 +1,4 @@
-# User Ip
+# User IP
 
 > Display the IP address of the posting below the post
 
