@@ -10,9 +10,8 @@
 import Model from 'flarum/common/Model';
 import mixin from 'flarum/common/utils/mixin';
 
-export default // @ts-ignore
-class ipinfo extends mixin(Model, {
-    countryCode: Model.attribute('gbcl_countryCode'),
-    region: Model.attribute('gbcl_region'),
-    isp: Model.attribute('gbcl_isp'),
+export default class ipinfo extends mixin(Model, {
+    countryCode: Model.attribute('countryCode'),
+    region: Model.attribute('region'),
+    isp: Model.attribute('isp'),
 }) {}
