@@ -42,4 +42,4 @@ You just need to open the plugin in the background. :)
 
 IP domain API is provided by [ip.sb](https://ip.sb)
 
-Support my work at [afdian 爱发电](https://afd.gbclstudio.cn)
+Support my work at [afdian 爱发电](http://afd.gbclstudio.cn)
