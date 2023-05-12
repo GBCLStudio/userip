@@ -2,6 +2,10 @@
 
 > Display the IP address of the posting below the post
 
+## ScreenShot
+
+![ss](screenshot.png)
+
 ## Install
 
 ```sh
