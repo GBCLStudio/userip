@@ -9,17 +9,18 @@
  */
 
 namespace GBCLStudio\GeoIp;
+
+use Flarum\Api\Controller;
 use Flarum\Api\Serializer\PostSerializer;
 use Flarum\Extend;
-use Flarum\Api\Controller;
 use Flarum\Post\Post;
 use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
 
 return [
-    
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
-        ->css(__DIR__ . '/resources/less/forum.less'),
+        ->css(__DIR__.'/resources/less/forum.less'),
 
     (new Extend\Middleware('forum'))
         ->add(Middleware\ProcessIp::class),

@@ -15,7 +15,6 @@ use GuzzleHttp\Client;
 
 class GeoIp
 {
-
     private Client $client;
 
     public function __construct()
