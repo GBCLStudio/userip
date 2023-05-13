@@ -36,6 +36,9 @@
         "backgroundColor": "#817aa7",
         "color": "#fff"
       }
+    },
+    "flagrow": {
+      "discuss": "https://discuss.flarum.org/d/32867"
     }
   }
 }
