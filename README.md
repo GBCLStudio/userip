@@ -1,10 +1,12 @@
 # User IP
 
+![extiverse](https://extiverse.com/extension/gbcl/userip/open-graph-image)
+
 > Display the IP address of the posting below the post
 
 ## ScreenShot
 
-![ss](screenshot.png)
+![ss](https://raw.githubusercontent.com/GBCLStudio/userip/main/screenshot.png)
 
 ## Install
 
