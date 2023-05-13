@@ -12,7 +12,6 @@ namespace GBCLStudio\GeoIp;
 
 class ServiceResponse implements \JsonSerializable
 {
-
     /**
      * @var string
      */

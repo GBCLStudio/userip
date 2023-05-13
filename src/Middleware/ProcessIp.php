@@ -26,7 +26,7 @@ class ProcessIp implements MiddlewareInterface
         $ipAddress = Arr::get(
             array: $request->getServerParams(),
             key: 'HTTP_X_FORWARDED_FOR',
-            default: Arr::get($request->getServerParams(),'REMOTE_ADDR')
+            default: Arr::get($request->getServerParams(), 'REMOTE_ADDR')
         );
 
         return $handler->handle($request->withAttribute('ipAddress', $ipAddress));
