@@ -25,7 +25,7 @@ class GeoIp
         ]);
     }
 
-    public function get(string $ip): ServiceResponse
+    public function get(string $ip, string $pid): ServiceResponse
     {
         $res = $this->client->get("/geoip/$ip");
 
@@ -38,6 +38,7 @@ class GeoIp
             ->setCountryCode($body->country_code ?? $errorNotice)
             ->setRegion($body->region ?? $errorNotice)
             ->setIsp($body->isp ?? $errorNotice)
+            ->setPostId($pid ?? $errorNotice)
             ->setAddress($ip);
     }
 }

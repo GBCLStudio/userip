@@ -38,26 +38,29 @@ class GeoIpRepository
 
     /**
      * @param string|null $ip
-     *
+     * @param int|null $pid
      * @return IpInfo|Builder|Model|object|void|null
      */
-    public function get(?string $ip)
+    public function get(?string $ip, ?int $pid)
     {
         if (!$ip || in_array($ip, $this->retrieving)) {
             return;
         }
 
-        return IpInfo::query()->where('address', $ip)->first() ?? $this->obtain($ip);
+        return IpInfo::query()
+            ->select(['country_code', 'region', 'isp'])
+            ->where('address', $ip)
+            ->first() ?? $this->obtain($ip, $pid);
     }
 
-    private function obtain(string $ip): ?IpInfo
+    private function obtain(string $ip, ?int $pid): ?IpInfo
     {
         $this->retrieving[] = $ip;
 
-        $response = $this->geoip->get($ip);
+        $response = $this->geoip->get($ip, $pid);
 
         if ($response) {
-            $data = new IpInfo();
+            $data = resolve(IpInfo::class);
 
             $data->address = $ip;
             $data->fill($response->toJson());
