@@ -1,3 +1,7 @@
 gbcl-userip:
   forum:
     unknownNotice: Unknown
+
+  admin:
+    permissions:
+      view_ip_info_label: Display IP Info

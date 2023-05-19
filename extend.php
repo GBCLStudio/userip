@@ -11,7 +11,7 @@
 namespace GBCLStudio\GeoIp;
 
 use Flarum\Api\Controller;
-use Flarum\Api\Serializer\PostSerializer;
+use Flarum\Api\Serializer;
 use Flarum\Extend;
 use Flarum\Post\Post;
 use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
@@ -23,6 +23,9 @@ return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),
+
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__.'/js/dist/admin.js'),
 
     (new Extend\Middleware('forum'))
         ->add(Middleware\ProcessIp::class),
@@ -45,9 +48,9 @@ return [
             });
     }),
 
-    (new Extend\ApiSerializer(PostSerializer::class))
-        ->relationship('userip_info', function (PostSerializer $serializer, Post $model) {
-            if ($serializer->getActor()->can('viewIps', $model)) {
+    (new Extend\ApiSerializer(Serializer\PostSerializer::class))
+        ->relationship('userip_info', function (Serializer\PostSerializer $serializer, Post $model) {
+            if ($serializer->getActor()->can('discussion.viewIpInfo', $model)) {
                 return $serializer->hasOne($model, IpInfoSerializer::class, 'userip_info');
             }
         }),
