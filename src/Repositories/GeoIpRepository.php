@@ -43,7 +43,7 @@ class GeoIpRepository
      */
     public function get(?string $ip, ?int $pid)
     {
-        if (!$ip || in_array($ip, $this->retrieving)) {
+        if (! $ip || in_array($ip, $this->retrieving)) {
             return;
         }
 
@@ -65,7 +65,7 @@ class GeoIpRepository
             $data->address = $ip;
             $data->fill($response->toJson());
 
-            if (!IpInfo::query()->where('address', $ip)->exists()) {
+            if (! IpInfo::query()->where('address', $ip)->exists()) {
                 $data->save();
             }
         }

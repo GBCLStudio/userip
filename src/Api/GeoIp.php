@@ -10,9 +10,9 @@
 
 namespace GBCLStudio\GeoIp\Api;
 
+use Flarum\Locale\Translator;
 use GBCLStudio\GeoIp\ServiceResponse;
 use GuzzleHttp\Client;
-use Flarum\Locale\Translator;
 
 class GeoIp
 {

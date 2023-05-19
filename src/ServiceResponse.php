@@ -28,7 +28,6 @@ class ServiceResponse implements \JsonSerializable
 
     private ?int $post_id;
 
-
     public function setCountryCode(?string $country_code): static
     {
         $this->country_code = $country_code;
@@ -64,6 +63,7 @@ class ServiceResponse implements \JsonSerializable
     public function setPostId(?int $post_id): static
     {
         $this->post_id = $post_id;
+
         return $this;
     }
 
