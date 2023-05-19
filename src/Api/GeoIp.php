@@ -16,7 +16,6 @@ use Flarum\Locale\Translator;
 
 class GeoIp
 {
-
     private Client $client;
 
     public function __construct()
