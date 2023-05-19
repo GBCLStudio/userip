@@ -41,7 +41,7 @@ app.initializers.add('gbcl/userip', () => {
         let errorCount = 0;
 
         [region, countryCode, isp].forEach(element => {
-            if (element === errorNotice || element === undefined || element === null) errorCount++;
+            if (element === 'null' || element === errorNotice || element === undefined || element === null) errorCount++;
         });
         if (errorCount >= 2) {
 

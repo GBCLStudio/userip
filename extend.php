@@ -18,6 +18,8 @@ use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
 
 return [
 
+    new Extend\Locales(__DIR__.'/resources/locale'),
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),
@@ -32,7 +34,14 @@ return [
     (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
         return $model->hasOne(IpInfo::class, 'address', 'ip_address')
             ->withDefault(function ($instance, $submodel) {
-                return resolve(GeoIpRepository::class)->get($submodel->ip_address);
+                return resolve(GeoIpRepository::class)->get($submodel->ip_address, $submodel->discussion_id);
+            });
+    }),
+
+    (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
+        return $model->hasOne(IpInfo::class, 'post_id', 'discussion_id')
+            ->withDefault(function ($instance, $submodel) {
+                return resolve(GeoIpRepository::class)->get($submodel->ip_address, $submodel->discussion_id);
             });
     }),
 
