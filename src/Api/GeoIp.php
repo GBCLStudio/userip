@@ -12,6 +12,7 @@ namespace GBCLStudio\GeoIp\Api;
 
 use GBCLStudio\GeoIp\ServiceResponse;
 use GuzzleHttp\Client;
+use Flarum\Locale\Translator;
 
 class GeoIp
 {
@@ -31,10 +32,13 @@ class GeoIp
 
         $body = json_decode($res->getBody());
 
+        // get locale notice
+        $errorNotice = resolve(Translator::class)->get('gbcl-userip.forum.unknownNotice');
+
         return (new ServiceResponse())
-            ->setCountryCode($body->country_code)
-            ->setRegion($body->region ?? 'Unknown')
-            ->setIsp($body->isp)
+            ->setCountryCode($body->country_code ?? $errorNotice)
+            ->setRegion($body->region ?? $errorNotice)
+            ->setIsp($body->isp ?? $errorNotice)
             ->setAddress($ip);
     }
 }

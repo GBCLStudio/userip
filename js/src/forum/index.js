@@ -15,10 +15,17 @@ import Model from 'flarum/common/Model';
 
 // @ts-ignore
 const getData = (ipInfo) => {
-    return `${ipInfo.region()}, ${ipInfo.countryCode()} | ${ipInfo.isp()}`;
+    return {
+        region: ipInfo.region(),
+        countryCode: ipInfo.countryCode(),
+        isp: ipInfo.isp()
+    };
 };
 
+
 app.initializers.add('gbcl/userip', () => {
+
+    const errorNotice = app.translator.trans("gbcl-userip.forum.unknownNotice");
 
     app.store.models.userip_info = ipinfo;
     app.store.models.posts.prototype.ipInfo = Model.hasOne('userip_info');
@@ -27,13 +34,26 @@ app.initializers.add('gbcl/userip', () => {
 
         const ipInfo = this.attrs.post.ipInfo();
 
-        items.add(
-            'userIp',
-            <div className="userIp-container">
-                <div className="ip-locate" id="info">
-                    {getData(ipInfo)}
+        if (!ipInfo) return;
+
+        const { region , countryCode , isp } = getData(ipInfo);
+
+        let errorCount = 0;
+
+        [region, countryCode, isp].forEach(element => {
+            if (element === errorNotice || element === undefined || element === null) errorCount++;
+        });
+        if (errorCount >= 2) {
+
+        } else {
+            items.add(
+                'userIp',
+                <div className="userIp-container">
+                    <div className="ip-locate" id="info">
+                        {`${region}, ${countryCode} | ${isp}`}
+                    </div>
                 </div>
-            </div>
             );
+        }
     })
 })

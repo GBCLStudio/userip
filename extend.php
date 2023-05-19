@@ -37,7 +37,9 @@ return [
 
     (new Extend\ApiSerializer(PostSerializer::class))
         ->relationship('userip_info', function (PostSerializer $serializer, Post $model) {
-            return $serializer->hasOne($model, IpInfoSerializer::class, 'userip_info');
+            if ($serializer->getActor()->can('viewIps', $model)) {
+                return $serializer->hasOne($model, IpInfoSerializer::class, 'userip_info');
+            }
         }),
 
     (new Extend\ApiController(Controller\ListPostsController::class))
