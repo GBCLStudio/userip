@@ -43,7 +43,8 @@ class GeoIpRepository
      */
     public function get(?string $ip, ?int $pid)
     {
-        if (! $ip || in_array($ip, $this->retrieving)) {
+        $ip = trim($ip);
+        if (empty($ip) || is_null($ip) || !$ip || in_array($ip, $this->retrieving)) {
             return;
         }
 
