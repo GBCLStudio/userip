@@ -39,6 +39,24 @@
     },
     "flagrow": {
       "discuss": "https://discuss.flarum.org/d/32867"
+    },
+    "flarum-cli": {
+      "modules": {
+        "admin": false,
+        "forum": true,
+        "js": true,
+        "jsCommon": false,
+        "css": true,
+        "locale": true,
+        "gitConf": true,
+        "githubActions": true,
+        "prettier": true,
+        "typescript": true,
+        "bundlewatch": false,
+        "backendTesting": true,
+        "editorConfig": false,
+        "styleci": true
+      }
     }
   }
 }
