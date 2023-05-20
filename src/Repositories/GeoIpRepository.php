@@ -37,6 +37,20 @@ class GeoIpRepository
         $this->cache = $cache;
     }
 
+    /** A function to check the giving IP is validated or not.
+     *
+     * @param string|null $ip
+     * @return bool
+     */
+    private function isValidateIp(?string $ip): bool
+    {
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param string|null $ip
      * @param int|null $pid
@@ -46,7 +60,7 @@ class GeoIpRepository
     public function get(?string $ip, ?int $pid)
     {
         $ip = trim($ip);
-        if (empty($ip) || is_null($ip) || in_array($ip, $this->retrieving)) {
+        if (! $this->isValidateIp($ip) || in_array($ip, $this->retrieving)) {
             return;
         }
 
