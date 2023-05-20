@@ -2,6 +2,6 @@ gbcl-userip:
   forum:
     unknownNotice: 未知
 
-    admin:
-      permissions:
-        view_ip_info_label: 显示 IP 属地信息
+  admin:
+    permissions:
+      view_ip_info_label: 显示 IP 属地信息
