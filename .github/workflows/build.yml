@@ -1,0 +1,20 @@
+name: Flarum Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: flarum/action-build@2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          build_script: build # npm run build
+          build_typings_script: build-typings # npm run build-typings
+          test_script: test # npm run test
+          package_manager: npm # Use NPM, not Yarn
+          js_path: ./js
+          do_not_commit: false
+          commit_all_dirty: false
