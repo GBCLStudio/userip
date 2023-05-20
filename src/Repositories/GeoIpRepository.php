@@ -12,6 +12,7 @@ namespace GBCLStudio\GeoIp\Repositories;
 
 use GBCLStudio\GeoIp\Api\GeoIp;
 use GBCLStudio\GeoIp\IpInfo;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -40,11 +41,12 @@ class GeoIpRepository
      * @param string|null $ip
      * @param int|null $pid
      * @return IpInfo|Builder|Model|object|void|null
+     * @throws GuzzleException
      */
     public function get(?string $ip, ?int $pid)
     {
         $ip = trim($ip);
-        if (empty($ip) || is_null($ip) || !$ip || in_array($ip, $this->retrieving)) {
+        if (empty($ip) || is_null($ip) || in_array($ip, $this->retrieving)) {
             return;
         }
 
@@ -54,25 +56,29 @@ class GeoIpRepository
             ->first() ?? $this->obtain($ip, $pid);
     }
 
+    /**
+     * @param string $ip
+     * @param int|null $pid
+     * @return IpInfo|null
+     * @throws GuzzleException
+     */
     private function obtain(string $ip, ?int $pid): ?IpInfo
     {
         $this->retrieving[] = $ip;
 
         $response = $this->geoip->get($ip, $pid);
 
-        if ($response) {
-            $data = resolve(IpInfo::class);
+        $data = resolve(IpInfo::class);
 
-            $data->address = $ip;
-            $data->fill($response->toJson());
+        $data->address = $ip;
+        $data->fill($response->toJson());
 
-            if (! IpInfo::query()->where('address', $ip)->exists()) {
-                $data->save();
-            }
+        if (! IpInfo::query()->where('address', $ip)->exists()) {
+            $data->save();
         }
 
         $this->retrieving = array_diff($this->retrieving, [$ip]);
 
-        return $data ?? null;
+        return $data;
     }
 }

@@ -13,6 +13,7 @@ namespace GBCLStudio\GeoIp\Api;
 use Flarum\Locale\Translator;
 use GBCLStudio\GeoIp\ServiceResponse;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class GeoIp
 {
@@ -25,6 +26,13 @@ class GeoIp
         ]);
     }
 
+    /** Get IP info from upstream API.
+     *
+     * @param string $ip
+     * @param string $pid
+     * @return ServiceResponse
+     * @throws GuzzleException
+     */
     public function get(string $ip, string $pid): ServiceResponse
     {
         $res = $this->client->get("/geoip/$ip");
