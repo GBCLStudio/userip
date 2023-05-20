@@ -59,7 +59,7 @@ class GeoIpRepository
      */
     public function get(?string $ip, ?int $pid)
     {
-        $ip = trim($ip);
+        $ip = trim((string)$ip);
         if (! $this->isValidateIp($ip) || in_array($ip, $this->retrieving)) {
             return;
         }
