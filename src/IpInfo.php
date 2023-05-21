@@ -13,7 +13,7 @@ namespace GBCLStudio\GeoIp;
 use Flarum\Database\AbstractModel;
 
 /**
- * @property int $post_id
+ * @property int id
  * @property string address
  * @property string|null countryCode
  * @property string|null region
@@ -24,8 +24,7 @@ class IpInfo extends AbstractModel
     protected $table = 'userip_info';
 
     protected $fillable = [
-        'post_id', 'address',
-        'country_code', 'region',
-        'isp',
+        'address', 'country_code',
+        'region', 'isp',
     ];
 }

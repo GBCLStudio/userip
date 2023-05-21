@@ -29,11 +29,10 @@ class GeoIp
     /** Get IP info from upstream API.
      *
      * @param string $ip
-     * @param string $pid
      * @return ServiceResponse
      * @throws GuzzleException
      */
-    public function get(string $ip, string $pid): ServiceResponse
+    public function get(string $ip): ServiceResponse
     {
         $res = $this->client->get("/geoip/$ip");
 
@@ -46,7 +45,6 @@ class GeoIp
             ->setCountryCode($body->country_code ?? $errorNotice)
             ->setRegion($body->region ?? $errorNotice)
             ->setIsp($body->isp ?? $errorNotice)
-            ->setPostId($pid ?? $errorNotice)
             ->setAddress($ip);
     }
 }

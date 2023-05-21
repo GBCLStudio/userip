@@ -36,6 +36,6 @@ class IpInfoSerializer extends AbstractSerializer
      */
     public function getId($model)
     {
-        return $model->post_id;
+        return $model->id;
     }
 }

@@ -23,6 +23,6 @@ return [
         });
     },
     'down' => function (Builder $schema) {
-        $schema->dropIfExists('ip_info');
+        $schema->dropIfExists('userip_info');
     },
 ];

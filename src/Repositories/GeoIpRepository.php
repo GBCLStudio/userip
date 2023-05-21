@@ -53,13 +53,12 @@ class GeoIpRepository
 
     /**
      * @param string|null $ip
-     * @param int|null $pid
      * @return IpInfo|Builder|Model|object|void|null
      * @throws GuzzleException
      */
-    public function get(?string $ip, ?int $pid)
+    public function get(?string $ip)
     {
-        $ip = trim((string)$ip);
+        $ip = trim((string) $ip);
         if (! $this->isValidateIp($ip) || in_array($ip, $this->retrieving)) {
             return;
         }
@@ -67,20 +66,19 @@ class GeoIpRepository
         return IpInfo::query()
             ->select(['country_code', 'region', 'isp'])
             ->where('address', $ip)
-            ->first() ?? $this->obtain($ip, $pid);
+            ->first() ?? $this->obtain($ip);
     }
 
     /**
      * @param string $ip
-     * @param int|null $pid
      * @return IpInfo|null
      * @throws GuzzleException
      */
-    private function obtain(string $ip, ?int $pid): ?IpInfo
+    private function obtain(string $ip): ?IpInfo
     {
         $this->retrieving[] = $ip;
 
-        $response = $this->geoip->get($ip, $pid);
+        $response = $this->geoip->get($ip);
 
         $data = resolve(IpInfo::class);
 

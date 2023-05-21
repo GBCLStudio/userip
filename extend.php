@@ -37,14 +37,7 @@ return [
     (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
         return $model->hasOne(IpInfo::class, 'address', 'ip_address')
             ->withDefault(function ($instance, $submodel) {
-                return resolve(GeoIpRepository::class)->get($submodel->ip_address, $submodel->discussion_id);
-            });
-    }),
-
-    (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
-        return $model->hasOne(IpInfo::class, 'post_id', 'discussion_id')
-            ->withDefault(function ($instance, $submodel) {
-                return resolve(GeoIpRepository::class)->get($submodel->ip_address, $submodel->discussion_id);
+                return resolve(GeoIpRepository::class)->get($submodel->ip_address);
             });
     }),
 
