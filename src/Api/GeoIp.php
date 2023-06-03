@@ -10,41 +10,37 @@
 
 namespace GBCLStudio\GeoIp\Api;
 
-use Flarum\Locale\Translator;
+use Flarum\Settings\SettingsRepositoryInterface;
 use GBCLStudio\GeoIp\ServiceResponse;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 
 class GeoIp
 {
-    private Client $client;
+    private string $prefix = 'gbcl-userip.services';
 
-    public function __construct()
+    /**
+     * @var SettingsRepositoryInterface
+     */
+    private SettingsRepositoryInterface $settings;
+
+    public function __construct(SettingsRepositoryInterface $settings)
     {
-        $this->client = new Client([
-            'base_uri' => 'https://api.ip.sb/',
-        ]);
+        $this->settings = $settings;
     }
 
-    /** Get IP info from upstream API.
-     *
+    /**
      * @param string $ip
-     * @return ServiceResponse
-     * @throws GuzzleException
+     *
+     * @return ServiceResponse|void
      */
-    public function get(string $ip): ServiceResponse
+    public function get(string $ip)
     {
-        $res = $this->client->get("/geoip/$ip");
+        $serviceName = $this->settings->get($this->prefix);
+        $service = Collection::$services[$serviceName] ?? null;
 
-        $body = json_decode($res->getBody());
+        if ($service == null) {
+            return;
+        }
 
-        // get locale notice
-        $errorNotice = resolve(Translator::class)->get('gbcl-userip.forum.unknownNotice');
-
-        return (new ServiceResponse())
-            ->setCountryCode($body->country_code ?? $errorNotice)
-            ->setRegion($body->region ?? $errorNotice)
-            ->setIsp($body->isp ?? $errorNotice)
-            ->setAddress($ip);
+        return resolve($service)->get($ip);
     }
 }

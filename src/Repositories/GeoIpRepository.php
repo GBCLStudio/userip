@@ -12,7 +12,6 @@ namespace GBCLStudio\GeoIp\Repositories;
 
 use GBCLStudio\GeoIp\Api\GeoIp;
 use GBCLStudio\GeoIp\IpInfo;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +53,6 @@ class GeoIpRepository
     /**
      * @param string|null $ip
      * @return IpInfo|Builder|Model|object|void|null
-     * @throws GuzzleException
      */
     public function get(?string $ip)
     {
@@ -72,7 +70,6 @@ class GeoIpRepository
     /**
      * @param string $ip
      * @return IpInfo|null
-     * @throws GuzzleException
      */
     private function obtain(string $ip): ?IpInfo
     {
@@ -85,7 +82,7 @@ class GeoIpRepository
         $data->address = $ip;
         $data->fill($response->toJson());
 
-        if (! IpInfo::query()->where('address', $ip)->exists()) {
+        if (! IpInfo::query()->where('address', $ip)->exists() ) {
             $data->save();
         }
 

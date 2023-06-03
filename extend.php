@@ -13,7 +13,9 @@ namespace GBCLStudio\GeoIp;
 use Flarum\Api\Controller;
 use Flarum\Api\Serializer;
 use Flarum\Extend;
+use Flarum\Frontend\Document;
 use Flarum\Post\Post;
+use GBCLStudio\GeoIp\Api\Collection;
 use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
 
 return [
@@ -25,7 +27,10 @@ return [
         ->css(__DIR__.'/resources/less/forum.less'),
 
     (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js'),
+        ->js(__DIR__.'/js/dist/admin.js')
+        ->content(function (Document $document) {
+            $document->payload['gbcl-userip.services'] = array_keys(Collection::$services);
+        }),
 
     (new Extend\Middleware('forum'))
         ->add(Middleware\ProcessIp::class),

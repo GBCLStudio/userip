@@ -17,5 +17,8 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "linkify-lite": "^2.0.1"
   }
 }
