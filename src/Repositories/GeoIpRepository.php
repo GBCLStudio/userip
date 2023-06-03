@@ -82,7 +82,7 @@ class GeoIpRepository
         $data->address = $ip;
         $data->fill($response->toJson());
 
-        if (! IpInfo::query()->where('address', $ip)->exists() ) {
+        if (! IpInfo::query()->where('address', $ip)->exists()) {
             $data->save();
         }
 
