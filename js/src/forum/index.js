@@ -38,14 +38,16 @@ app.initializers.add('gbcl/userip', () => {
 
         const { region , countryCode , isp } = getData(ipInfo);
 
-        let errorCount = 0;
+        let errorCount = [region, countryCode, isp].reduce(
+            (el, count)=> (
+                el === "null"      ||
+                el === errorNotice ||
+                el
+            ) ? ++count : count
+        ,0)
 
-        [region, countryCode, isp].forEach(element => {
-            if (element === 'null' || element === errorNotice || element === undefined || element === null) errorCount++;
-        });
-        if (errorCount >= 2) {
-
-        } else {
+        if (errorCount < 2)
+        {
             items.add(
                 'userIp',
                 <div className="userIp-container">
