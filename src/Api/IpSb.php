@@ -38,13 +38,10 @@ class IpSb implements GeoIpInterface
 
         $body = json_decode($res->getBody());
 
-        // get locale notice
-        $errorNotice = resolve(Translator::class)->get('gbcl-userip.forum.unknownNotice');
-
         return (new ServiceResponse())
-            ->setCountryCode($body->country_code ?? $errorNotice)
-            ->setRegion($body->region ?? $errorNotice)
-            ->setIsp($body->isp ?? $errorNotice)
+            ->setCountryCode($body->country_code)
+            ->setRegion($body->region)
+            ->setIsp($body->isp)
             ->setAddress($ip);
     }
 }

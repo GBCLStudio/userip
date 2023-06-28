@@ -13,7 +13,6 @@ import CommentPost from 'flarum/forum/components/CommentPost';
 import ipinfo from './Model/ipinfo';
 import Model from 'flarum/common/Model';
 
-// @ts-ignore
 const getData = (ipInfo) => {
     return {
         region: ipInfo.region(),
@@ -28,7 +27,7 @@ app.initializers.add('gbcl/userip', () => {
     const errorNotice = app.translator.trans("gbcl-userip.forum.unknownNotice");
 
     app.store.models.userip_info = ipinfo;
-    app.store.models.posts.prototype.ipInfo = Model.hasOne('userip_info');
+    app.store.models.Posts.prototype.ipInfo = Model.hasOne('userip_info');
 
     extend(CommentPost.prototype, 'footerItems', function (items) {
 
@@ -39,9 +38,8 @@ app.initializers.add('gbcl/userip', () => {
         const { region , countryCode , isp } = getData(ipInfo);
 
         let errorCount = [region, countryCode, isp].reduce(
-            (el, count)=> (
-                el === "null"      ||
-                el === errorNotice ||
+            (count, el)=> (
+                el === "null" ||
                 el
             ) ? ++count : count
         ,0)
@@ -52,7 +50,7 @@ app.initializers.add('gbcl/userip', () => {
                 'userIp',
                 <div className="userIp-container">
                     <div className="ip-locate" id="info">
-                        {`${region}, ${countryCode} | ${isp}`}
+                        {`${region ?? errorNotice}, ${countryCode ?? errorNotice} | ${isp ?? errorNotice}`}
                     </div>
                 </div>
             );
