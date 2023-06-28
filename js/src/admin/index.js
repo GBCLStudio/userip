@@ -8,16 +8,19 @@
  */
 
 import app from 'flarum/admin/app';
+import GeoipSettingsPage from './components/ExtensionSettingsPage';
 
 app.initializers.add('gbcl/userip', () => {
     app.extensionData
         .for('gbcl-userip')
+        .registerPage(GeoipSettingsPage)
         .registerPermission(
             {
                 icon: 'fas fa-map-marked-alt',
                 label: app.translator.trans('gbcl-userip.admin.permissions.view_ip_info_label'),
                 permission: 'discussion.viewIpInfo',
                 tagScoped: true,
+                allowGuest: true,
             },
             'view'
         );
