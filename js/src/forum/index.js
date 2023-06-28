@@ -37,12 +37,21 @@ app.initializers.add('gbcl/userip', () => {
 
         const { region , countryCode , isp } = getData(ipInfo);
 
-        let errorCount = [region, countryCode, isp].reduce(
-            (count, el)=> (
-                el === "null" ||
-                el
-            ) ? ++count : count
-        ,0)
+        let result = [region, countryCode, isp].reduce(
+            (acc, el, index) => {
+                let count = acc.count;
+                if(el === null || el === undefined || el === ""){
+                    ++count;
+                    el = errorNotice;
+                }
+                acc.elements[index] = el;
+                acc.count = count;
+                return acc;
+            }
+            ,{count: 0, elements: []});
+
+        const [reg, code, serv] = result.elements;
+        const errorCount = result.count;
 
         if (errorCount < 2)
         {
@@ -50,7 +59,7 @@ app.initializers.add('gbcl/userip', () => {
                 'userIp',
                 <div className="userIp-container">
                     <div className="ip-locate" id="info">
-                        {`${region ?? errorNotice}, ${countryCode ?? errorNotice} | ${isp ?? errorNotice}`}
+                        {`${reg}, ${code} | ${serv}`}
                     </div>
                 </div>
             );
