@@ -19,6 +19,7 @@ export default class GeoipSettingsPage extends ExtensionPage {
 
     content(vnode) {
         const service = this.setting('gbcl-userip.service')();
+        const options = [];
 
         return (
             <div className="container">
@@ -28,11 +29,11 @@ export default class GeoipSettingsPage extends ExtensionPage {
                             type: 'select',
                             setting: 'gbcl-userip.service',
                             label: app.translator.trans('gbcl-userip.admin.service.label'),
-                            options: app.data['gbcl-userip.services'].reduce((o, p) => {
-                                o[p] = app.translator.trans(`gbcl-userip.admin.service.${p}.label`);
-
-                                return o;
-                            }, {}),
+                            options: app.data['gbcl-userip.services'].map((service) => {
+                                const { name } = service
+                                options[name] = app.translator.trans(`gbcl-userip.admin.service.${name}.label`)
+                                return options
+                            }),
                             required: true,
                             help: service && m.trust(linkify(extractText(app.translator.trans(`gbcl-userip.admin.service.${service}.description`)))),
                         })}
