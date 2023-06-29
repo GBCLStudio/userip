@@ -50,6 +50,6 @@ class GeoIp
             return;
         }
 
-        return resolve($this->serviceSelected)->get($ip);
+        return ($this->serviceSelected)->get($ip);
     }
 }
