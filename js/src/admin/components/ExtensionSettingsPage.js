@@ -37,6 +37,7 @@ export default class GeoipSettingsPage extends ExtensionPage {
                             help: service && m.trust(linkify(extractText(app.translator.trans(`gbcl-userip.admin.service.${service}.description`)))),
                         })}
                     </div>
+                    {this.submitButton()}
                 </div>
             </div>
         );

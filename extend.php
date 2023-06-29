@@ -68,4 +68,7 @@ return [
     (new Extend\ApiController(Controller\ShowDiscussionController::class))
         ->addInclude('posts.userip_info'),
 
+    (new Extend\Settings())
+        ->default('gbcl-userip.service', 'ipsb'),
+
 ];
