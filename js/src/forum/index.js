@@ -8,9 +8,11 @@
  */
 
 import app from 'flarum/forum/app';
-import { extend } from 'flarum/common/extend';
+import {extend} from 'flarum/common/extend';
 import CommentPost from 'flarum/forum/components/CommentPost';
 import ipinfo from './Model/ipinfo';
+import ProcessData from "./ProcessData";
+import UserIpToolBar from "./components/UserIpToolBar";
 import Model from 'flarum/common/Model';
 
 const getData = (ipInfo) => {
@@ -35,33 +37,17 @@ app.initializers.add('gbcl/userip', () => {
 
         if (!ipInfo) return;
 
-        const { region , countryCode , isp } = getData(ipInfo);
+        const {region, countryCode, isp} = getData(ipInfo);
 
-        let result = [region, countryCode, isp].reduce(
-            (acc, el, index) => {
-                let count = acc.count;
-                if(el === null || el === undefined || el === ""){
-                    ++count;
-                    el = errorNotice;
-                }
-                acc.elements[index] = el;
-                acc.count = count;
-                return acc;
-            }
-            ,{count: 0, elements: []});
+        const result = new ProcessData(region, countryCode, isp).process(errorNotice)
 
         const [reg, code, serv] = result.elements;
         const errorCount = result.count;
 
-        if (errorCount < 2)
-        {
+        if (errorCount < 2) {
             items.add(
                 'userIp',
-                <div className="userIp-container">
-                    <div className="ip-locate" id="info">
-                        {`${reg}, ${code} | ${serv}`}
-                    </div>
-                </div>
+                <UserIpToolBar region={reg} countryCode={code} isp={serv}/>
             );
         }
     })
