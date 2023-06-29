@@ -17,7 +17,7 @@ export default class ProcessData {
     }
 
     process(errorNotice: any) {
-        return [this._region, this.code, this.isp].reduce(
+        return [this.region, this.code, this.isp].reduce(
             (acc, el, index) => {
                 let count = acc.count;
                 if (el === null || el === undefined || el === "") {
