@@ -10,20 +10,31 @@
 
 namespace GBCLStudio\GeoIp\Extend;
 
-use GBCLStudio\GeoIp\Api\Collection;
+use Flarum\Extend\ExtenderInterface;
+use Flarum\Extension\Extension;
+use GBCLStudio\GeoIp\Api\GeoIpInterface;
+use Illuminate\Contracts\Container\Container;
+use InvalidArgumentException;
 
-class ApiProvider
+class ApiProvider implements ExtenderInterface
 {
-    /** Use this method to register an ApiProvider.
-     *
-     * Example: ApiProvider::register($translator->get(string), YourProviderClass::class)
-     *
-     * @param string $name
-     * @param string $class
-     * @return void
-     */
-    public static function register(string $name, string $class): void
+    private $provider;
+
+    public function __construct(string $provider)
     {
-        Collection::add($name, $class);
+        $this->provider = $provider;
+    }
+
+    public function extend(Container $container, Extension $extension = null)
+    {
+        $provider = $container->make($this->provider);
+
+        if ($provider instanceof GeoIpInterface) {
+            $container->tag([
+                $this->provider,
+            ], 'gbcl-userip.services');
+        } else {
+            throw new InvalidArgumentException("{$this->provider} has to extend ".GeoIpInterface::class);
+        }
     }
 }

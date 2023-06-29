@@ -15,12 +15,12 @@ use GBCLStudio\GeoIp\ServiceResponse;
 
 class GeoIp
 {
-    private string $prefix = 'gbcl-userip.services';
 
     /**
      * @var SettingsRepositoryInterface
      */
     private SettingsRepositoryInterface $settings;
+    private mixed $serviceSelected;
 
     public function __construct(SettingsRepositoryInterface $settings)
     {
@@ -34,13 +34,22 @@ class GeoIp
      */
     public function get(string $ip)
     {
-        $serviceName = $this->settings->get($this->prefix);
-        $service = Collection::$services[$serviceName] ?? null;
+        $name = $this->settings->get('gbcl-userip.service');
+        $services = resolve('container')->tagged('gbcl-userip.services');
 
-        if ($service == null) {
+        foreach ($services as $service)
+        {
+            if ($service->name() === $name)
+            {
+                $this->serviceSelected = $service;
+            }
+            break;
+        }
+
+        if (!$this->serviceSelected) {
             return;
         }
 
-        return resolve($service)->get($ip);
+        return resolve($this->serviceSelected)->get($ip);
     }
 }

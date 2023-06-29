@@ -14,5 +14,6 @@ use GBCLStudio\GeoIp\ServiceResponse;
 
 interface GeoIpInterface
 {
+    public function name(): string;
     public function get(string $ip): ServiceResponse;
 }

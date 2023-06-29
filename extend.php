@@ -15,7 +15,6 @@ use Flarum\Api\Serializer;
 use Flarum\Extend;
 use Flarum\Frontend\Document;
 use Flarum\Post\Post;
-use GBCLStudio\GeoIp\Api\Collection;
 use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
 
 return [
@@ -29,7 +28,7 @@ return [
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
         ->content(function (Document $document) {
-            $document->payload['gbcl-userip.services'] = array_keys(Collection::$services);
+            $document->payload['gbcl-userip.services'] = resolve('gbcl-userip.services.admin');
         }),
 
     (new Extend\Middleware('forum'))
@@ -38,6 +37,9 @@ return [
         ->add(Middleware\ProcessIp::class),
     (new Extend\Middleware('api'))
         ->add(Middleware\ProcessIp::class),
+
+    (new Extend\ServiceProvider())
+        ->register(GeoIpServiceProvider::class),
 
     (new Extend\Model(Post::class))->relationship('userip_info', function (Post $model) {
         return $model->hasOne(IpInfo::class, 'address', 'ip_address')

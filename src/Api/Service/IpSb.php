@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace GBCLStudio\GeoIp\Api;
+namespace GBCLStudio\GeoIp\Api\Service;
 
-use Flarum\Locale\Translator;
+use GBCLStudio\GeoIp\Api\GeoIpInterface;
 use GBCLStudio\GeoIp\ServiceResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -24,6 +24,11 @@ class IpSb implements GeoIpInterface
         $this->client = new Client([
             'base_uri' => 'https://api.ip.sb/',
         ]);
+    }
+
+    public function name(): string
+    {
+        return 'ipsb';
     }
 
     /** Get IP info from upstream API.
