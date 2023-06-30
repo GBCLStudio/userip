@@ -8,7 +8,7 @@
  */
 
 import app from 'flarum/forum/app';
-import { extend } from "flarum/common/extend";
+import {extend} from "flarum/common/extend";
 import CommentPost from 'flarum/forum/components/CommentPost';
 import ipinfo from './Model/ipinfo';
 import ProcessData from "./ProcessData";
@@ -36,7 +36,7 @@ app.initializers.add('gbcl/userip', () => {
         if (errorCount < 2) {
             items.add(
                 'userIp',
-                <GeoIpToolBar region={reg} code={code} isp={serv} />
+                <GeoIpToolBar region={reg} code={code} isp={serv}/>
             )
         }
     })

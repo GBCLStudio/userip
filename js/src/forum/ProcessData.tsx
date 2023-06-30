@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { NestedStringArray } from "@askvortsov/rich-icu-message-formatter";
+import {NestedStringArray} from "@askvortsov/rich-icu-message-formatter";
 import ipinfo from "./Model/ipinfo";
 
 export default class ProcessData {
