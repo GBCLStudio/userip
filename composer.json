@@ -16,9 +16,6 @@
     "guzzlehttp/guzzle": "^6.0 || ^7.0",
     "php": "^8.0"
   },
-  "conflict": {
-    "fof/geoip": ">=0.1"
-  },
   "autoload": {
     "psr-4": {
       "GBCLStudio\\GeoIp\\": "src/"
