@@ -8,10 +8,9 @@
  */
 
 import Model from 'flarum/common/Model';
-import mixin from 'flarum/common/utils/mixin';
 
-export default class ipinfo extends mixin(Model, {
-    countryCode: Model.attribute('countryCode'),
-    region: Model.attribute('region'),
-    isp: Model.attribute('isp'),
-}) {}
+export default class ipinfo extends Model {
+    countryCode = Model.attribute('countryCode') as any
+    region = Model.attribute('region') as any
+    isp = Model.attribute('isp') as any
+}
