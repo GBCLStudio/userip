@@ -15,15 +15,6 @@ import ProcessData from "./ProcessData";
 import Model from 'flarum/common/Model';
 import GeoIpToolBar from "./components/GeoIpToolBar";
 
-const getData = (ipInfo) => {
-    return {
-        region: ipInfo.region(),
-        countryCode: ipInfo.countryCode(),
-        isp: ipInfo.isp()
-    };
-};
-
-
 app.initializers.add('gbcl/userip', () => {
 
     const errorNotice = app.translator.trans("gbcl-userip.forum.unknownNotice");
@@ -37,9 +28,7 @@ app.initializers.add('gbcl/userip', () => {
 
         if (!ipInfo) return;
 
-        const {region, countryCode, isp} = getData(ipInfo);
-
-        const result = new ProcessData(region, countryCode, isp).process(errorNotice)
+        const result = new ProcessData().getData(ipinfo).process(errorNotice)
 
         const [reg, code, serv] = result.elements;
         const errorCount = result.count;
@@ -47,7 +36,7 @@ app.initializers.add('gbcl/userip', () => {
         if (errorCount < 2) {
             items.add(
                 'userIp',
-                <GeoIpToolBar region={reg} code={code} isp={serv}/>
+                <GeoIpToolBar region={reg} code={code} isp={serv} />
             )
         }
     })
