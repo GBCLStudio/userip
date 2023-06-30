@@ -51,6 +51,8 @@ You can easily extend this extension to support different API providers, if you 
 
 ## Note
 
-IP domain API is provided by [ip.sb](https://ip.sb)
+Builtin IP domain API is provided by [ip.sb](https://ip.sb)
+
+Referenced code from the following projects: fof/geoip, fof/oauth
 
 Support my work at [afdian 爱发电](http://afd.gbclstudio.cn)
