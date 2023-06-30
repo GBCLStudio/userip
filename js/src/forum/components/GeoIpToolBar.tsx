@@ -15,6 +15,7 @@ export interface GeoIpBarAttrs extends ComponentAttrs {
     region: string;
     isp: string;
 }
+
 export default class GeoIpToolBar<CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs> extends Component<CustomAttrs> {
     view(vnode: Mithril.VnodeDOM<CustomAttrs, this>) {
         let { code, region, isp } = this.attrs;

@@ -7,16 +7,20 @@
  * file that was distributed with this source code.
  */
 
+import { NestedStringArray } from "@askvortsov/rich-icu-message-formatter";
+import ipinfo from "./Model/ipinfo";
+
 export default class ProcessData {
     [x: string]: any;
 
-    constructor(region: any, countryCode: any, isp: any) {
-        this.region = region
-        this.isp = isp
-        this.code = countryCode
-    }
+    getData(ipInfo: ipinfo) {
+        this.region = ipInfo.region()
+        this.code = ipInfo.countryCode()
+        this.isp = ipInfo.isp()
+        return this
+    };
 
-    process(errorNotice: any) {
+    process(errorNotice: NestedStringArray) {
         return [this.region, this.code, this.isp].reduce(
             (acc, el, index) => {
                 let count = acc.count;
