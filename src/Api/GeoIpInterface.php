@@ -14,6 +14,17 @@ use GBCLStudio\GeoIp\ServiceResponse;
 
 interface GeoIpInterface
 {
+
+    /** Returns a string with the name of the api service provider, which must match the fields in the translated text.
+     *
+     * @return string
+     */
     public function name(): string;
+
+    /** Returns a ServiceResponse object that calls all methods beginning with 'set'.
+     *
+     * @param string $ip
+     * @return ServiceResponse
+     */
     public function get(string $ip): ServiceResponse;
 }
