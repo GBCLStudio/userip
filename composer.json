@@ -12,7 +12,7 @@
     "source": "https://github.com/GBCLStudio/userip"
   },
   "require": {
-    "flarum/core": "^1.6.3",
+    "flarum/core": "^1.7.0",
     "guzzlehttp/guzzle": "^6.0 || ^7.0",
     "php": "^8.0"
   },
