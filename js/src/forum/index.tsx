@@ -11,6 +11,7 @@ import app from 'flarum/forum/app';
 import {extend} from "flarum/common/extend";
 import CommentPost from 'flarum/forum/components/CommentPost';
 import ipinfo from './Model/ipinfo';
+import Model from 'flarum/common/Model';
 import ProcessData from "./ProcessData";
 import GeoIpToolBar from "./components/GeoIpToolBar";
 
@@ -21,6 +22,7 @@ app.initializers.add('gbcl/userip', () => {
     const errorNotice = app.translator.trans("gbcl-userip.forum.unknownNotice");
 
     app.store.models.userip_info = ipinfo;
+    app.store.models.posts.prototype.userIpInfo = Model.hasOne('userip_info');
 
     extend(CommentPost.prototype, 'footerItems', function (items) {
 
