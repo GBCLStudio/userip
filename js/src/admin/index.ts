@@ -8,10 +8,7 @@
  */
 
 import app from 'flarum/admin/app';
-import {NestedStringArray} from "@askvortsov/rich-icu-message-formatter";
-import extractText from "flarum/common/utils/extractText";
-// @ts-ignore
-import linkify from "linkify-lite";
+import GeoipSettingsPage from './components/ExtensionSettingsPage';
 
 app.initializers.add('gbcl/userip', () => {
     const serviceDataList: any = app.data['gbcl-userip.services'];
@@ -19,18 +16,7 @@ app.initializers.add('gbcl/userip', () => {
 
     app.extensionData
         .for('gbcl-userip')
-        .registerSetting({
-            setting: 'gbcl-userip.service',
-            type: 'select',
-            options: serviceDataList.reduce(
-                (o: { [x: string]: NestedStringArray; }, p: { name: string | number; }) => {
-                    o[p.name] = app.translator.trans(`gbcl-userip.admin.service.${p.name}.label`);
-                    return o;
-                }, {}
-            ),
-            label: app.translator.trans('gbcl-userip.admin.service.label'),
-            help: service && m.trust(linkify(extractText(app.translator.trans(`gbcl-userip.admin.service.${service}.description`))))
-        })
+        .registerPage(GeoipSettingsPage)
         .registerPermission(
             {
                 icon: 'fas fa-map-marked-alt',
