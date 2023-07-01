@@ -15,7 +15,6 @@ use GBCLStudio\GeoIp\ServiceResponse;
 
 class GeoIp
 {
-
     /**
      * @var SettingsRepositoryInterface
      */
@@ -37,19 +36,17 @@ class GeoIp
         $name = $this->settings->get('gbcl-userip.service');
         $services = resolve('container')->tagged('gbcl-userip.services');
 
-        foreach ($services as $service)
-        {
-            if ($service->name() === $name)
-            {
+        foreach ($services as $service) {
+            if ($service->name() === $name) {
                 $this->serviceSelected = $service;
             }
             break;
         }
 
-        if (!$this->serviceSelected) {
+        if (! $this->serviceSelected) {
             return;
         }
 
-        return ($this->serviceSelected)->get($ip);
+        return $this->serviceSelected->get($ip);
     }
 }
