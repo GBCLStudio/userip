@@ -14,7 +14,6 @@ use GBCLStudio\GeoIp\ServiceResponse;
 
 interface GeoIpInterface
 {
-
     /** Returns a string with the name of the api service provider, which must match the fields in the translated text.
      *
      * @return string
