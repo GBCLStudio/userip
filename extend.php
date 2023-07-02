@@ -16,6 +16,8 @@ use Flarum\Extend;
 use Flarum\Frontend\Document;
 use Flarum\Post\Post;
 use GBCLStudio\GeoIp\Repositories\GeoIpRepository;
+use GBCLStudio\GeoIp\Serializer\IpInfoSerializer;
+use GBCLStudio\GeoIp\ServiceProvider\GeoIpServiceProvider;
 
 return [
 

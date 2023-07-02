@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GBCLStudio\GeoIp;
+namespace GBCLStudio\GeoIp\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
 
