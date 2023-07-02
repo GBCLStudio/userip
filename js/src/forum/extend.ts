@@ -9,10 +9,13 @@
 
 import Extend from 'flarum/common/extenders';
 import Post from 'flarum/common/models/Post';
-import ipinfo from "./Model/ipinfo";
+import ipinfo from './Model/ipinfo';
 
 export default [
     new Extend.Model(Post)
         .hasOne<ipinfo>('userip_info')
-        .attribute<any>('userIpInfo'),
+        .attribute<ipinfo>('userIpInfo'),
+
+    new Extend.Store()
+        .add('userip_info', ipinfo),
 ];

@@ -11,6 +11,6 @@ import ipinfo from "../forum/Model/ipinfo";
 
 declare module 'flarum/common/models/Post' {
     export default interface Post {
-        userIpInfo: () => ipinfo;
+        userIpInfo: () => ipinfo | false;
     }
 }

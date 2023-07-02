@@ -1,63 +1,63 @@
 {
-  "name": "gbcl/userip",
-  "description": "Geolocation for Flarum",
-  "keywords": [
-    "flarum",
-    "geoip"
-  ],
-  "type": "flarum-extension",
-  "license": "MIT",
-  "support": {
-    "issues": "https://github.com/GBCLStudio/userip/issues",
-    "source": "https://github.com/GBCLStudio/userip"
-  },
-  "require": {
-    "flarum/core": "^1.7.0",
-    "guzzlehttp/guzzle": "^6.0 || ^7.0",
-    "php": "^8.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "GBCLStudio\\GeoIp\\": "src/"
-    }
-  },
-  "authors": [
-    {
-      "name": "GBCLStudio",
-      "email": "gbclstudio@gmail.com",
-      "role": "Developer"
-    }
-  ],
-  "extra": {
-    "flarum-extension": {
-      "title": "User IP",
-      "category": "feature",
-      "icon": {
-        "name": "fas fa-map-marked-alt",
-        "backgroundColor": "#817aa7",
-        "color": "#fff"
-      }
+    "name": "gbcl/userip",
+    "description": "Geolocation for Flarum",
+    "keywords": [
+        "flarum",
+        "geoip"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/GBCLStudio/userip/issues",
+        "source": "https://github.com/GBCLStudio/userip"
     },
-    "flagrow": {
-      "discuss": "https://discuss.flarum.org/d/32867"
+    "require": {
+        "flarum/core": "^1.7.0",
+        "guzzlehttp/guzzle": "^6.0 || ^7.0",
+        "php": "^8.0"
     },
-    "flarum-cli": {
-      "modules": {
-        "admin": false,
-        "forum": true,
-        "js": true,
-        "jsCommon": false,
-        "css": true,
-        "locale": true,
-        "gitConf": true,
-        "githubActions": true,
-        "prettier": true,
-        "typescript": true,
-        "bundlewatch": false,
-        "backendTesting": true,
-        "editorConfig": false,
-        "styleci": true
-      }
+    "autoload": {
+        "psr-4": {
+            "GBCLStudio\\GeoIp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GBCLStudio",
+            "email": "gbclstudio@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "flarum-extension": {
+            "title": "User IP",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-map-marked-alt",
+                "backgroundColor": "#817aa7",
+                "color": "#fff"
+            }
+        },
+        "flagrow": {
+            "discuss": "https://discuss.flarum.org/d/32867"
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": false,
+                "forum": true,
+                "js": true,
+                "jsCommon": false,
+                "css": true,
+                "locale": true,
+                "gitConf": true,
+                "githubActions": true,
+                "prettier": true,
+                "typescript": true,
+                "bundlewatch": false,
+                "backendTesting": true,
+                "editorConfig": false,
+                "styleci": true
+            }
+        }
     }
-  }
 }

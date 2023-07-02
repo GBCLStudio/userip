@@ -11,8 +11,6 @@ import app from 'flarum/admin/app';
 import GeoipSettingsPage from './components/ExtensionSettingsPage';
 
 app.initializers.add('gbcl/userip', () => {
-    const serviceDataList: any = app.data['gbcl-userip.services'];
-    const service = JSON.parse('gbcl-userip.service')();
 
     app.extensionData
         .for('gbcl-userip')
@@ -22,8 +20,7 @@ app.initializers.add('gbcl/userip', () => {
                 icon: 'fas fa-map-marked-alt',
                 label: app.translator.trans('gbcl-userip.admin.permissions.view_ip_info_label'),
                 permission: 'discussion.viewIpInfo',
-                tagScoped: true,
-                allowGuest: true,
+                allowGuest: true
             },
             'view'
         );
