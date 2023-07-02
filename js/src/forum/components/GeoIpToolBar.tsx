@@ -21,8 +21,11 @@ export default class GeoIpToolBar<CustomAttrs extends GeoIpBarAttrs = GeoIpBarAt
         let {code, region, isp} = this.attrs;
         return (
             <div className="userIp-container">
-                <div className="ip-locate" id="info">
-                    {`${region}, ${code} | ${isp}`}
+                <div className="ip-locate" id="info-country">
+                    {`${region}, ${code}`}
+                </div>
+                <div className="ip-locate" id="info-isp">
+                    {`${isp}`}
                 </div>
             </div>
         )
