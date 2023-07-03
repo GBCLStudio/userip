@@ -7,4 +7,5 @@
  * file that was distributed with this source code.
  */
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 module.exports = require('flarum-webpack-config')()

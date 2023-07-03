@@ -22,7 +22,7 @@ interface ReducerInitialValue {
 }
 
 export default class GeoipSettingsPage extends ExtensionPage {
-  oninit(vnode: Mithril.Vnode<{}, this>) {
+  oninit(vnode: Mithril.Vnode<object, this>) {
     super.oninit(vnode)
   }
 
