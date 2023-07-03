@@ -7,30 +7,33 @@
  * file that was distributed with this source code.
  */
 
-import {NestedStringArray} from "@askvortsov/rich-icu-message-formatter";
-import ipinfo from "./Model/ipinfo";
+import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
+import ipinfo from './Model/IPInfo'
 
 export default class ProcessData {
-    [x: string]: any;
+  private region: NestedStringArray
+  private code: NestedStringArray
+  private isp: NestedStringArray
 
-    getData(ipInfo: ipinfo) {
-        this.region = ipInfo.region()
-        this.code = ipInfo.countryCode()
-        this.isp = ipInfo.isp()
-        return this
-    };
+  constructor(ipInfo: ipinfo) {
+    this.region = ipInfo.region()
+    this.code = ipInfo.countryCode()
+    this.isp = ipInfo.isp()
+  }
 
-    process(errorNotice: NestedStringArray) {
-        return [this.region, this.code, this.isp].reduce(
-            (acc, el, index) => {
-                let count = acc.count;
-                if (el === null || el === undefined || el === "") {
-                    ++count;
-                    el = errorNotice;
-                }
-                acc.elements[index] = el;
-                acc.count = count;
-                return acc;
-            }, {count: 0, elements: []})
-    }
+  process(errorNotice: NestedStringArray) {
+    return [this.region, this.code, this.isp].reduce(
+      (acc, el, index) => {
+        let count = acc.count
+        if (el === null || el === undefined || el === '') {
+          ++count
+          el = errorNotice
+        }
+        acc.elements[index] = el
+        acc.count = count
+        return acc
+      },
+      { count: 0, elements: [] as NestedStringArray[] }
+    )
+  }
 }

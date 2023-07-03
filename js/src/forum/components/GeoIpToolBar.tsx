@@ -7,27 +7,28 @@
  * file that was distributed with this source code.
  */
 
-import Component, {ComponentAttrs} from "flarum/common/Component";
-import type Mithril from 'mithril';
+import Component, { ComponentAttrs } from 'flarum/common/Component'
 
 export interface GeoIpBarAttrs extends ComponentAttrs {
-    code: string;
-    region: string;
-    isp: string;
+  code: string
+  region: string
+  isp: string
 }
 
-export default class GeoIpToolBar<CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs> extends Component<CustomAttrs> {
-    view(vnode: Mithril.VnodeDOM<CustomAttrs, this>) {
-        let {code, region, isp} = this.attrs;
-        return (
-            <div className="userIp-container">
-                <div className="ip-locate" id="info-country">
-                    {`${region}, ${code}`}
-                </div>
-                <div className="ip-locate" id="info-isp">
-                    {`${isp}`}
-                </div>
-            </div>
-        )
-    }
+export default class GeoIpToolBar<
+  CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs
+> extends Component<CustomAttrs> {
+  view() {
+    const { code, region, isp } = this.attrs
+    return (
+      <div className='userIp-container'>
+        <div className='ip-locate' id='info-country'>
+          {`${region}, ${code}`}
+        </div>
+        <div className='ip-locate' id='info-isp'>
+          {`${isp}`}
+        </div>
+      </div>
+    )
+  }
 }

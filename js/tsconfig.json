@@ -9,6 +9,7 @@
       "shims.d.ts"
     ],
     "compilerOptions": {
+      "jsx": "preserve",
       // This will output typings to `dist-typings`
       "declarationDir": "./dist-typings",
       "baseUrl": ".",

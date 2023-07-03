@@ -7,15 +7,14 @@
  * file that was distributed with this source code.
  */
 
-import Extend from 'flarum/common/extenders';
-import Post from 'flarum/common/models/Post';
-import ipinfo from './Model/ipinfo';
+import Extend from 'flarum/common/extenders'
+import Post from 'flarum/common/models/Post'
+import ipinfo from './Model/IPInfo'
 
 export default [
-    new Extend.Model(Post)
-        .hasOne<ipinfo>('userip_info')
-        .attribute<ipinfo>('userIpInfo'),
+  new Extend.Model(Post)
+    .hasOne<ipinfo>('userip_info')
+    .attribute<ipinfo>('userIpInfo'),
 
-    new Extend.Store()
-        .add('userip_info', ipinfo),
-];
+  new Extend.Store().add('userip_info', ipinfo),
+]

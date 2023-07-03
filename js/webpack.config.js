@@ -7,4 +7,4 @@
  * file that was distributed with this source code.
  */
 
-module.exports = require('flarum-webpack-config')();
+module.exports = require('flarum-webpack-config')()

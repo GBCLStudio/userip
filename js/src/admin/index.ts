@@ -7,21 +7,22 @@
  * file that was distributed with this source code.
  */
 
-import app from 'flarum/admin/app';
-import GeoipSettingsPage from './components/ExtensionSettingsPage';
+import app from 'flarum/admin/app'
+import GeoipSettingsPage from './components/ExtensionSettingsPage'
 
 app.initializers.add('gbcl/userip', () => {
-
-    app.extensionData
-        .for('gbcl-userip')
-        .registerPage(GeoipSettingsPage)
-        .registerPermission(
-            {
-                icon: 'fas fa-map-marked-alt',
-                label: app.translator.trans('gbcl-userip.admin.permissions.view_ip_info_label'),
-                permission: 'discussion.viewIpInfo',
-                allowGuest: true
-            },
-            'view'
-        );
-});
+  app.extensionData
+    .for('gbcl-userip')
+    .registerPage(GeoipSettingsPage)
+    .registerPermission(
+      {
+        icon: 'fas fa-map-marked-alt',
+        label: app.translator.trans(
+          'gbcl-userip.admin.permissions.view_ip_info_label'
+        ),
+        permission: 'discussion.viewIpInfo',
+        allowGuest: true,
+      },
+      'view'
+    )
+})

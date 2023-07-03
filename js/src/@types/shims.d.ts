@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-import ipinfo from "../forum/Model/ipinfo";
+import ipinfo from '../forum/Model/IPInfo'
 
 declare module 'flarum/common/models/Post' {
-    export default interface Post {
-        userIpInfo: () => ipinfo | false;
-    }
+  export default interface Post {
+    userIpInfo: () => ipinfo | false
+  }
 }
