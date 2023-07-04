@@ -13,39 +13,37 @@ namespace GBCLStudio\GeoIp\Api\Service;
 use GBCLStudio\GeoIp\Api\GeoIpInterface;
 use GBCLStudio\GeoIp\ServiceResponse;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 
-class IpSb implements GeoIpInterface
+class OvincApi implements GeoIpInterface
 {
     private Client $client;
 
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'https://api.ip.sb/',
+            'base_uri' => 'http://api.ip-city.ovinc.cn',
         ]);
     }
-
+    
     public function name(): string
     {
-        return 'ipsb';
+        return 'ovincApi';
     }
-
-    /** Get IP info from upstream API.
-     *
-     * @param string $ip
-     * @return ServiceResponse
-     * @throws GuzzleException
-     */
+    
     public function get(string $ip): ServiceResponse
     {
-        $res = $this->client->get("/geoip/$ip");
+        $res = $this->client->get("/search/?ip=$ip");
 
         $body = json_decode($res->getBody());
 
         return (new ServiceResponse())
-            ->setCountryCode($body->country_code)
-            ->setRegion($body->region)
+            ->setCountryCode($body->countryCode)
+            ->setRegion($body->country)
+            ->setProvince($body->province)
+            ->setDistrict($body->district)
+            ->setCity($body->city)
+            ->setAreaCode($body->areaCode)
+            ->setBackboneIsp($body->backboneISP)
             ->setIsp($body->isp)
             ->setAddress($ip);
     }

@@ -13,14 +13,14 @@ namespace GBCLStudio\GeoIp\ServiceProvider;
 use Closure;
 use Flarum\Foundation\AbstractServiceProvider;
 use GBCLStudio\GeoIp\Api\GeoIpInterface;
-use GBCLStudio\GeoIp\Api\Service\IpSb;
+use GBCLStudio\GeoIp\Api\Service\OvincApi;
 
 class GeoIpServiceProvider extends AbstractServiceProvider
 {
     public function register()
     {
         $this->container->tag([
-            IpSb::class,
+            OvincApi::class,
         ], 'gbcl-userip.services');
 
         $this->container->singleton('gbcl-userip.services.admin', $this->map(function (GeoIpInterface $service) {

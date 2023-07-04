@@ -12,3 +12,7 @@ gbcl-userip:
       ipsb:
         label: IP.SB
         description: 使用 <b>https://ip.sb</b> 获取免费的 IP 属地信息 （速率限制注意）
+        
+      ovincApi:
+        label: Ovinc 内网 API
+        description: 定制：Ovinc内网查询API

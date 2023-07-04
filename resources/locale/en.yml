@@ -12,3 +12,7 @@ gbcl-userip:
       ipsb:
         label: IP.SB
         description: Use <b>https://ip.sb</b> to get free IP location information (please note the rate limit)
+        
+      ovincApi:
+        label: Ovinc Inner Api
+        description: Inner Api for Customer

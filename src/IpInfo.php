@@ -17,6 +17,11 @@ use Flarum\Database\AbstractModel;
  * @property string address
  * @property string|null countryCode
  * @property string|null region
+ * @property string|null province
+ * @property string|null district
+ * @property string|null areaCode
+ * @property string|null backboneIsp
+ * @property string|null city
  * @property string|null isp
  */
 class IpInfo extends AbstractModel
@@ -26,5 +31,8 @@ class IpInfo extends AbstractModel
     protected $fillable = [
         'address', 'country_code',
         'region', 'isp',
+        'backboneIsp', 'district',
+        'city', 'areaCode',
+        'province',
     ];
 }

@@ -13,6 +13,7 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage'
 import extractText from 'flarum/common/utils/extractText'
 import linkify from '../../utils/linkify'
 import type Mithril from 'mithril'
+import IPInfo from "../../forum/Model/IPInfo";
 
 interface ServiceData {
   name: string
@@ -29,6 +30,7 @@ export default class GeoipSettingsPage extends ExtensionPage {
   content(): JSX.Element {
     const service = this.setting('gbcl-userip.service')()
 
+    const serviceAllAttrs = Object.values(IPInfo)
     const serviceDataList = app.data['gbcl-userip.services'] as ServiceData[]
     const options = serviceDataList.reduce(
       (accumulator, currentPoint) => ({
@@ -63,6 +65,16 @@ export default class GeoipSettingsPage extends ExtensionPage {
                   )
                 ),
             })}
+          </div>
+          <div className='Form-group'>
+              {app.translator.trans('gbcl-userip.admin.service.label')}
+              {serviceAllAttrs.map(value => {
+                  this.buildSettingComponent({
+                      type: "boolean",
+                      setting: `gbcl-userip.service.options.${value}`,
+                      label: app.translator.trans(`gbcl-userip.admin.service.${service}.${value}`)
+                  })
+              })}
           </div>
           {this.submitButton()}
         </div>

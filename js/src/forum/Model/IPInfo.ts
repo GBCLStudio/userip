@@ -14,4 +14,9 @@ export default class IPInfo extends Model {
   countryCode = Model.attribute<NestedStringArray>('countryCode')
   region = Model.attribute<NestedStringArray>('region')
   isp = Model.attribute<NestedStringArray>('isp')
+  city = Model.attribute<NestedStringArray>('city')
+  province = Model.attribute<NestedStringArray>('province')
+  backboneIsp = Model.attribute<NestedStringArray>('backboneisp')
+  areaCode = Model.attribute<NestedStringArray>('areaCode')
+  district = Model.attribute<NestedStringArray>('district')
 }

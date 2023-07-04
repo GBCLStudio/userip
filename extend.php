@@ -73,6 +73,6 @@ return [
         ->addInclude('posts.userip_info'),
 
     (new Extend\Settings())
-        ->default('gbcl-userip.service', 'ipsb'),
+        ->default('gbcl-userip.service', 'ovincApi'),
 
 ];
