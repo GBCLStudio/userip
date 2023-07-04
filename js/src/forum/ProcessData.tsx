@@ -11,44 +11,33 @@ import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
 import ipinfo from './Model/IPInfo'
 
 export default class ProcessData {
-  private region: NestedStringArray
-  private code: NestedStringArray
-  private isp: NestedStringArray
-  private city: NestedStringArray
-  private province: NestedStringArray;
-  private district: NestedStringArray;
-  private areaCode: NestedStringArray;
-  private backbone: NestedStringArray;
-
+  private data: Record<string, NestedStringArray>
 
   constructor(ipInfo: ipinfo) {
-    this.region = ipInfo.region()
-    this.code = ipInfo.countryCode()
-    this.isp = ipInfo.isp()
-    this.city = ipInfo.city()
-    this.province = ipInfo.province()
-    this.district = ipInfo.district()
-    this.backbone = ipInfo.backboneIsp()
-    this.areaCode = ipInfo.areaCode()
+    this.data = {
+      countryCode: ipInfo.countryCode(),
+      region: ipInfo.region(),
+      isp: ipInfo.isp(),
+      city: ipInfo.city(),
+      province: ipInfo.province(),
+      backboneIsp: ipInfo.backboneIsp(),
+      areaCode: ipInfo.areaCode(),
+      district: ipInfo.district(),
+    }
   }
 
   process(errorNotice: NestedStringArray) {
-    const ObjKey = Object.keys(this)
-    const process = Object.values(this).reduce(
+    const elements: NestedStringArray[] = []
+
+    return Object.values(this.data).reduce(
       (acc, el, index) => {
-        let count = acc.count
-        if (el === null || el === undefined || el === '') {
-          ++count
-          el = errorNotice
-        }
-        acc.elements[index] = el
-        acc.count = count
+        const isElmentAvailable = el === null || el === undefined || el === ''
+
+        acc.elements[index] = isElmentAvailable ? el : errorNotice
+        acc.count = isElmentAvailable ? acc.count : ++acc.count
         return acc
       },
-      { count: 0, elements: [] as NestedStringArray[] }
+      { count: 0, elements }
     )
-    const Obj = Object.fromEntries(ObjKey.map((key, index) => [key, process.elements[index]]))
-    const count = process.count
-    return { Obj, count }
   }
 }
