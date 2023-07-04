@@ -10,9 +10,7 @@
 import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
 import ipinfo from './Model/IPInfo'
 
-type NestedStringArrayRecord = Record<string, NestedStringArray>
-
-export interface Data extends NestedStringArrayRecord {
+export type Data = {
   countryCode: NestedStringArray
   region: NestedStringArray
   isp: NestedStringArray
@@ -21,7 +19,7 @@ export interface Data extends NestedStringArrayRecord {
   backboneIsp: NestedStringArray
   areaCode: NestedStringArray
   district: NestedStringArray
-}
+} & Record<string, NestedStringArray>
 
 export default class ProcessData {
   private data: Data
@@ -44,11 +42,10 @@ export default class ProcessData {
     let errorCount = 0
 
     for (const [key, value] of Object.entries(this.data)) {
-      const isElmentAvailable =
-        value === null || value === undefined || value === ''
+      if (errorCount > 2) return false
 
-      errorCount = isElmentAvailable ? errorCount : ++errorCount
-      elements[key] = isElmentAvailable ? value : errorNotice
+      errorCount = value ? errorCount : ++errorCount
+      elements[key] = value || errorNotice
     }
 
     return { elements, count: errorCount }
