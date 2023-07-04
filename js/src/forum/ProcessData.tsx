@@ -31,10 +31,10 @@ export default class ProcessData {
 
     return Object.values(this.data).reduce(
       (acc, el, index) => {
-        const isElmentAvailable = el === null || el === undefined || el === ''
+        const isElementAvailable = el === null || el === undefined || el === ''
 
-        acc.elements[index] = isElmentAvailable ? el : errorNotice
-        acc.count = isElmentAvailable ? acc.count : ++acc.count
+        acc.elements[index] = isElementAvailable ? el : errorNotice
+        acc.count = isElementAvailable ? acc.count : ++acc.count
         return acc
       },
       { count: 0, elements }
