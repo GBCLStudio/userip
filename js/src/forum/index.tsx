@@ -27,6 +27,6 @@ app.initializers.add('gbcl/userip', () => {
     if (!ipInfo) return
 
     const result = new ProcessData(ipInfo).process(errorNotice)
-    result && items.add('userIp', <GeoIpToolBar elements={result.elements} />)
+    result && items.add('userIp', <GeoIpToolBar elements={result} />)
   })
 })

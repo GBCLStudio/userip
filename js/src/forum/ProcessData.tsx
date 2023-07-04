@@ -48,6 +48,6 @@ export default class ProcessData {
       elements[key] = value || errorNotice
     }
 
-    return { elements, count: errorCount }
+    return elements
   }
 }
