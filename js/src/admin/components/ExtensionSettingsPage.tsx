@@ -13,7 +13,7 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage'
 import extractText from 'flarum/common/utils/extractText'
 import linkify from '../../utils/linkify'
 import type Mithril from 'mithril'
-import IPInfo from "../../forum/Model/IPInfo";
+import IPInfo from "../../forum/Model/IPInfo"
 
 interface ServiceData {
   name: string
@@ -30,7 +30,7 @@ export default class GeoipSettingsPage extends ExtensionPage {
   content(): JSX.Element {
     const service = this.setting('gbcl-userip.service')()
 
-    const serviceAllAttrs = Object.values(IPInfo)
+    const serviceAllAttrs = Object.keys(new IPInfo()).slice(4)
     const serviceDataList = app.data['gbcl-userip.services'] as ServiceData[]
     const options = serviceDataList.reduce(
       (accumulator, currentPoint) => ({
@@ -67,13 +67,17 @@ export default class GeoipSettingsPage extends ExtensionPage {
             })}
           </div>
           <div className='Form-group'>
-              {app.translator.trans('gbcl-userip.admin.service.label')}
-              {serviceAllAttrs.map(value => {
-                  this.buildSettingComponent({
-                      type: "boolean",
-                      setting: `gbcl-userip.service.options.${value}`,
-                      label: app.translator.trans(`gbcl-userip.admin.service.${service}.${value}`)
-                  })
+              {this.buildSettingComponent({
+                  type: "text",
+                  setting: `gbcl-userip.service.badgeOptions`,
+                  label: app.translator.trans('gbcl-userip.admin.service.badgeOptionsLabel'),
+                  help: `Use '|' to split.Available Options: ${serviceAllAttrs.toString()}`
+              })}
+              {this.buildSettingComponent({
+                  type: "text",
+                  setting: `gbcl-userip.service.hoverOptions`,
+                  label: app.translator.trans('gbcl-userip.admin.service.hoverOptionsLabel'),
+                  help: `Use '|' to split.Available Options: ${serviceAllAttrs.toString()}`
               })}
           </div>
           {this.submitButton()}
