@@ -75,8 +75,10 @@ return [
     (new Extend\Settings())
         ->serializeToForum('BadgeOptions','gbcl-userip.badgeOptions')
         ->serializeToForum('HoverOptions','gbcl-userip.hoverOptions')
+        ->serializeToForum('MaxCount','gbcl-userip.badgeErrorCount')
         ->default('gbcl-userip.hoverOptions','countryCode|region|isp')
         ->default('gbcl-userip.badgeOptions','countryCode|region|isp')
+        ->default('gbcl-userip.badgeErrorCount','4')
         ->default('gbcl-userip.service', 'ovincApi'),
 
 ];

@@ -75,6 +75,16 @@ export default class GeoIPSettingsPage extends ExtensionPage {
 
             {this.buildSettingComponent({
               type: 'text',
+              setting: `gbcl-userip.badgeErrorCount`,
+              label: app.translator.trans(
+                'gbcl-userip.admin.service.badgeErrorCountLabel'
+              ),
+              help: `${app.translator.trans('gbcl-userip.admin.service.count_label_help')}`,
+            })}
+          </div>
+          <div className='Form-group'>
+            {this.buildSettingComponent({
+              type: 'text',
               setting: `gbcl-userip.hoverOptions`,
               label: app.translator.trans(
                 'gbcl-userip.admin.service.hoverOptionsLabel'
