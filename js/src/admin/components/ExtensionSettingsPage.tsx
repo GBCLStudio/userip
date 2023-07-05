@@ -13,16 +13,13 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage'
 import extractText from 'flarum/common/utils/extractText'
 import linkify from '../../utils/linkify'
 import type Mithril from 'mithril'
-import IPInfo from "../../forum/Model/IPInfo"
+import IPInfo from '../../forum/Model/IPInfo'
 
 interface ServiceData {
   name: string
 }
-interface ReducerInitialValue {
-  [name: string]: NestedStringArray
-}
 
-export default class GeoipSettingsPage extends ExtensionPage {
+export default class GeoIPSettingsPage extends ExtensionPage {
   oninit(vnode: Mithril.Vnode<object, this>) {
     super.oninit(vnode)
   }
@@ -41,7 +38,7 @@ export default class GeoipSettingsPage extends ExtensionPage {
           ),
         },
       }),
-      {} as ReducerInitialValue
+      {} as Record<string, NestedStringArray>
     )
     return (
       <div className='container'>
@@ -67,18 +64,23 @@ export default class GeoipSettingsPage extends ExtensionPage {
             })}
           </div>
           <div className='Form-group'>
-              {this.buildSettingComponent({
-                  type: "text",
-                  setting: `gbcl-userip.service.badgeOptions`,
-                  label: app.translator.trans('gbcl-userip.admin.service.badgeOptionsLabel'),
-                  help: `Use '|' to split.Available Options: ${serviceAllAttrs.toString()}`
-              })}
-              {this.buildSettingComponent({
-                  type: "text",
-                  setting: `gbcl-userip.service.hoverOptions`,
-                  label: app.translator.trans('gbcl-userip.admin.service.hoverOptionsLabel'),
-                  help: `Use '|' to split.Available Options: ${serviceAllAttrs.toString()}`
-              })}
+            {this.buildSettingComponent({
+              type: 'text',
+              setting: `gbcl-userip.service.badgeOptions`,
+              label: app.translator.trans(
+                'gbcl-userip.admin.service.badgeOptionsLabel'
+              ),
+              help: `Use '|' to split. Available Options: ${serviceAllAttrs.toString()}`,
+            })}
+
+            {this.buildSettingComponent({
+              type: 'text',
+              setting: `gbcl-userip.service.hoverOptions`,
+              label: app.translator.trans(
+                'gbcl-userip.admin.service.hoverOptionsLabel'
+              ),
+              help: `Use '|' to split. Available Options: ${serviceAllAttrs.toString()}`,
+            })}
           </div>
           {this.submitButton()}
         </div>

@@ -50,8 +50,4 @@ export default class ProcessData {
 
     return elements
   }
-  
-  getAllElements() {
-      return Object.keys(this)
-  }
 }

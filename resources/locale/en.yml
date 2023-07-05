@@ -1,29 +1,29 @@
 gbcl-userip:
-  forum:
-    unknownNotice: Unknown
+    forum:
+        unknownNotice: Unknown
 
-  admin:
-    permissions:
-      view_ip_info_label: Display IP Info
+    admin:
+        permissions:
+            view_ip_info_label: Display IP Info
 
-    service:
-      label: Service
-      badgeOptionsLabel: Badge Options
-      hoverOptionsLabel: Hover Options
+        service:
+            label: Service
+            badgeOptionsLabel: Badge Options
+            hoverOptionsLabel: Hover Options
 
-      ipsb:
-        label: IP.SB
-        description: Use <b>https://ip.sb</b> to get free IP location information (please note the rate limit)
-        
-      ovincApi:
-        label: Ovinc Inner Api
-        description: Inner Api for Customer
-        
-        areaCode: Area Code
-        backboneIsp: Backbone ISP
-        district: District
-        province: Province
-        isp: ISP
-        countryCode: Country Code
-        region: Region
-        city: City
+            ipsb:
+                label: IP.SB
+                description: Use <b>https://ip.sb</b> to get free IP location information (please note the rate limit)
+
+            ovincApi:
+                label: Ovinc Inner Api
+                description: Inner Api for Customer
+
+                areaCode: Area Code
+                backboneIsp: Backbone ISP
+                district: District
+                province: Province
+                isp: ISP
+                countryCode: Country Code
+                region: Region
+                city: City

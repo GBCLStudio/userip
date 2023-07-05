@@ -10,43 +10,51 @@
 import Component, { ComponentAttrs } from 'flarum/common/Component'
 import { Data } from '../ProcessData'
 import app from 'flarum/forum/app'
-import Tooltip from "flarum/common/components/Tooltip";
+import Tooltip from 'flarum/common/components/Tooltip'
+
+const BADGE_OPTIONS_KEY = 'badgeOptions'
+const HOVER_OPTIONS_KEY = 'hoverOptions'
 
 export interface GeoIpBarAttrs extends ComponentAttrs {
   elements: Data
+}
+
+interface Settings {
+  service: {
+    [BADGE_OPTIONS_KEY]: string
+    [HOVER_OPTIONS_KEY]: string
+  }
+}
+
+enum Service {
+  Badge,
+  Hover,
 }
 
 export default class GeoIpToolBar<
   CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs
 > extends Component<CustomAttrs> {
   view() {
-      const settings = JSON.parse(app.forum.attribute('GbclUserIp'));
+    const settings = JSON.parse(app.forum.attribute('GbclUserIp')) as Settings
+
     return (
-      <Tooltip text={this.getTooltipOptions(settings)}>
+      <Tooltip text={this.getOptions(Service.Hover, settings)}>
         <div className='userIp-container'>
           <div className='ip-locate' id='info-country'>
-            {`${this.getBadgeOptions(settings)}`}
+            {`${this.getOptions(Service.Badge, settings)}`}
           </div>
         </div>
       </Tooltip>
     )
   }
-  
-  getBadgeOptions(settings: any): string {
-      const { elements } = this.attrs
-      const settingAttrs = settings.service.badgeOptions
-      
-      return settingAttrs.split('|').map((value: string) => {
-          return `${elements[value]} | `
-      })
-  }
-  
-  getTooltipOptions(settings: any): string {
-      const { elements } = this.attrs
-      const settingAttrs = settings.service.hoverOptions
 
-      return settingAttrs.split('|').map((value: string) => {
-          return `${elements[value]} | `
-      })
+  getOptions(service: Service, settings: Settings) {
+    const { elements } = this.attrs
+
+    return settings.service[
+      service === Service.Badge ? BADGE_OPTIONS_KEY : HOVER_OPTIONS_KEY
+    ]
+      .split('|')
+      .map(value => `${elements[value]} |`)
   }
 }
