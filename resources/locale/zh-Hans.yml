@@ -1,6 +1,6 @@
 gbcl-userip:
   forum:
-    unknownNotice: 未知
+    unknownNotice: "- -"
 
   admin:
     permissions:
