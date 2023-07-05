@@ -8,32 +8,24 @@
  */
 
 
-body when (@config-dark-mode = true) {
-  .ip-locate {
-    border: 1px solid #1b2028;
-  }
-}
-
 button.Button.Button--primary.ip-locate {
-  margin-top: 8px;
-  padding: 7px;
-  margin-left: 0;
+    margin-top: 8px;
+    padding: 7px;
+    margin-left: 0;
 }
 .userIp-container {
-  flex-wrap: wrap;
-  display: flex;
+    flex-wrap: wrap;
+    display: flex;
 }
 .ip-locate {
-  margin-bottom: 6px;
-  padding: 2px 5px 2px 5px;
-  border: 1px solid #cad0db;
+    margin-left: 10px;
+    margin-bottom: 6px;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid #cad0db;
+    border-radius: 6px;
 }
-
-.userIp-container .ip-locate:first-of-type {
-  margin-left: 10px;
-  border-radius: 6px 0 0 6px;
-}
-
-.userIp-container .ip-locate:last-of-type {
-  border-radius: 0 6px 6px 0;
+body when (@config-dark-mode = true) {
+    .ip-locate {
+        border: 1px solid #1b2028;
+    }
 }
