@@ -73,6 +73,7 @@ return [
         ->addInclude('posts.userip_info'),
 
     (new Extend\Settings())
+        ->serializeToForum('GbclUserIp','gbcl-userip')
         ->default('gbcl-userip.service', 'ovincApi'),
 
 ];
