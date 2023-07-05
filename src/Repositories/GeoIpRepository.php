@@ -62,7 +62,7 @@ class GeoIpRepository
         }
 
         return IpInfo::query()
-            ->select(['country_code', 'region', 'isp'])
+            ->select(['*'])
             ->where('address', $ip)
             ->first() ?? $this->obtain($ip);
     }

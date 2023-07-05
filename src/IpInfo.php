@@ -28,6 +28,8 @@ class IpInfo extends AbstractModel
 {
     protected $table = 'userip_info';
 
+    protected $hidden = ['address'];
+
     protected $fillable = [
         'address', 'country_code',
         'region', 'isp',

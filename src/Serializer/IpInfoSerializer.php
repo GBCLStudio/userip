@@ -22,20 +22,25 @@ class IpInfoSerializer extends AbstractSerializer
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultAttributes($model): array
+    public function getId($model)
     {
-        return [
-            'countryCode'       => $model->country_code,
-            'region'            => $model->region,
-            'isp'               => $model->isp,
-        ];
+        return $model->id;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getId($model)
+    protected function getDefaultAttributes($model): array
     {
-        return $model->id;
+        return [
+            'countryCode' => $model->country_code,
+            'region'      => $model->region,
+            'isp'         => $model->isp,
+            'province'    => $model->province,
+            'backboneIsp' => $model->backboneIsp,
+            'district'    => $model->district,
+            'city'        => $model->city,
+            'areaCode'    => $model->areaCode,
+        ];
     }
 }
