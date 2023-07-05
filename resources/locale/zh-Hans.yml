@@ -9,8 +9,12 @@ gbcl-userip:
     service:
       label: 服务
       badgeOptionsLabel: 基本显示标签选项
+      badgeErrorCountLabel: 基本显示标签最大容错数
       hoverOptionsLabel: 更多显示标签选项
       options_label_help: 多个参数请使用‘|’ 分割。 支持参数：
+      count_label_help: |
+        单个基本标签能允许的最大错误数量，错误超过此数量的基本标签将不被显示，建议设置为基本标签数量的一半
+        不要超过基本标签的数量！！！
 
       ipsb:
         label: IP.SB

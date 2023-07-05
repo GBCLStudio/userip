@@ -9,8 +9,10 @@ gbcl-userip:
         service:
             label: Service
             badgeOptionsLabel: Badge Options
+            badgeErrorCountLabel: Badge Error Count Options
             hoverOptionsLabel: Hover Options
             options_label_help: Use '|' to split. Available Options：
+            count_label_help: Allow maximum error.
 
             ipsb:
                 label: IP.SB
