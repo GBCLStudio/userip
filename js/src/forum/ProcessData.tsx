@@ -40,14 +40,25 @@ export default class ProcessData {
 
   process(errorNotice: NestedStringArray) {
     const elements = {} as Data
-    const badgeAttrs = app.forum.attribute('BadgeOptions')
+    const badgeAttrs: string = app.forum.attribute('BadgeOptions')
+    const maxErrorCount: number = app.forum.attribute('MaxCount')
 
     for (const [key, value] of Object.entries(this.data)) {
-      if (badgeAttrs == null) return false
-
       elements[key] = value || errorNotice
     }
 
-    return elements
+    return this.noError(badgeAttrs, maxErrorCount) && elements
+  }
+  
+  noError(badgeAttrs: string, maxErrorCount: number): boolean {
+    let count = 0
+    
+    if (badgeAttrs == null) return false
+    badgeAttrs.split('|')
+      .map(value => {
+        if (this.data[value] == null || this.data[value] == '') ++count
+      })
+    return count < maxErrorCount;
+    
   }
 }
