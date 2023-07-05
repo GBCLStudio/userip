@@ -8,6 +8,9 @@ gbcl-userip:
 
     service:
       label: 服务
+      badgeOptionsLabel: 基本显示标签选项
+      hoverOptionsLabel: 更多显示标签选项
+      options_label_help: 多个参数请使用‘|’ 分割。 支持参数：
 
       ipsb:
         label: IP.SB

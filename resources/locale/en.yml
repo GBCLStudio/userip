@@ -10,6 +10,7 @@ gbcl-userip:
             label: Service
             badgeOptionsLabel: Badge Options
             hoverOptionsLabel: Hover Options
+            options_label_help: Use '|' to split. Available Options：
 
             ipsb:
                 label: IP.SB
@@ -18,12 +19,3 @@ gbcl-userip:
             ovincApi:
                 label: Ovinc Inner Api
                 description: Inner Api for Customer
-
-                areaCode: Area Code
-                backboneIsp: Backbone ISP
-                district: District
-                province: Province
-                isp: ISP
-                countryCode: Country Code
-                region: Region
-                city: City

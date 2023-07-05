@@ -73,7 +73,10 @@ return [
         ->addInclude('posts.userip_info'),
 
     (new Extend\Settings())
-        ->serializeToForum('GbclUserIp','gbcl-userip')
+        ->serializeToForum('BadgeOptions','gbcl-userip.badgeOptions')
+        ->serializeToForum('HoverOptions','gbcl-userip.hoverOptions')
+        ->default('gbcl-userip.hoverOptions','countryCode|region|isp')
+        ->default('gbcl-userip.badgeOptions','countryCode|region|isp')
         ->default('gbcl-userip.service', 'ovincApi'),
 
 ];

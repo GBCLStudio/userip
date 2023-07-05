@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
+import {NestedStringArray} from '@askvortsov/rich-icu-message-formatter'
 import app from 'flarum/admin/app'
 import ExtensionPage from 'flarum/admin/components/ExtensionPage'
 import extractText from 'flarum/common/utils/extractText'
@@ -66,20 +66,20 @@ export default class GeoIPSettingsPage extends ExtensionPage {
           <div className='Form-group'>
             {this.buildSettingComponent({
               type: 'text',
-              setting: `gbcl-userip.service.badgeOptions`,
+              setting: `gbcl-userip.badgeOptions`,
               label: app.translator.trans(
                 'gbcl-userip.admin.service.badgeOptionsLabel'
               ),
-              help: `Use '|' to split. Available Options: ${serviceAllAttrs.toString()}`,
+              help: `${app.translator.trans('gbcl-userip.admin.service.options_label_help')} ${serviceAllAttrs.toString()}`,
             })}
 
             {this.buildSettingComponent({
               type: 'text',
-              setting: `gbcl-userip.service.hoverOptions`,
+              setting: `gbcl-userip.hoverOptions`,
               label: app.translator.trans(
                 'gbcl-userip.admin.service.hoverOptionsLabel'
               ),
-              help: `Use '|' to split. Available Options: ${serviceAllAttrs.toString()}`,
+              help: `${app.translator.trans('gbcl-userip.admin.service.options_label_help')} ${serviceAllAttrs.toString()}`,
             })}
           </div>
           {this.submitButton()}

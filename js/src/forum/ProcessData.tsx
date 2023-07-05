@@ -9,6 +9,7 @@
 
 import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
 import IPInfo from './Model/IPInfo'
+import app from 'flarum/forum/app'
 
 export type Data = {
   countryCode: NestedStringArray
@@ -39,12 +40,11 @@ export default class ProcessData {
 
   process(errorNotice: NestedStringArray) {
     const elements = {} as Data
-    let errorCount = 0
+    const badgeAttrs = app.forum.attribute('BadgeOptions')
 
     for (const [key, value] of Object.entries(this.data)) {
-      if (errorCount > 2) return false
+      if (badgeAttrs == null) return false
 
-      errorCount = value ? errorCount : ++errorCount
       elements[key] = value || errorNotice
     }
 
