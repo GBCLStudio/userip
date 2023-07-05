@@ -9,6 +9,8 @@
 
 import Component, { ComponentAttrs } from 'flarum/common/Component'
 import { Data } from '../ProcessData'
+import app from 'flarum/forum/app'
+import Tooltip from "flarum/common/components/Tooltip";
 
 export interface GeoIpBarAttrs extends ComponentAttrs {
   elements: Data
@@ -18,16 +20,33 @@ export default class GeoIpToolBar<
   CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs
 > extends Component<CustomAttrs> {
   view() {
-    const { elements } = this.attrs
+      const settings = JSON.parse(app.forum.attribute('GbclUserIp'));
     return (
-      <div className='userIp-container'>
-        <div className='ip-locate' id='info-country'>
-          {`${elements.region}, ${elements.countryCode}`}
+      <Tooltip text={this.getTooltipOptions(settings)}>
+        <div className='userIp-container'>
+          <div className='ip-locate' id='info-country'>
+            {`${this.getBadgeOptions(settings)}`}
+          </div>
         </div>
-        <div className='ip-locate' id='info-isp'>
-          {`${elements.isp}`}
-        </div>
-      </div>
+      </Tooltip>
     )
+  }
+  
+  getBadgeOptions(settings: any): string {
+      const { elements } = this.attrs
+      const settingAttrs = settings.service.badgeOptions
+      
+      return settingAttrs.split('|').map((value: string) => {
+          return `${elements[value]} | `
+      })
+  }
+  
+  getTooltipOptions(settings: any): string {
+      const { elements } = this.attrs
+      const settingAttrs = settings.service.hoverOptions
+
+      return settingAttrs.split('|').map((value: string) => {
+          return `${elements[value]} | `
+      })
   }
 }

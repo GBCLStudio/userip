@@ -8,7 +8,7 @@
  */
 
 import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter'
-import ipinfo from './Model/IPInfo'
+import IPInfo from './Model/IPInfo'
 
 export type Data = {
   countryCode: NestedStringArray
@@ -24,7 +24,7 @@ export type Data = {
 export default class ProcessData {
   private data: Data
 
-  constructor(ipInfo: ipinfo) {
+  constructor(ipInfo: IPInfo) {
     this.data = {
       countryCode: ipInfo.countryCode(),
       region: ipInfo.region(),
@@ -49,5 +49,9 @@ export default class ProcessData {
     }
 
     return elements
+  }
+  
+  getAllElements() {
+      return Object.keys(this)
   }
 }
