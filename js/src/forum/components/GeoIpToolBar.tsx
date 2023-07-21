@@ -8,25 +8,24 @@
  */
 
 import Component, { ComponentAttrs } from 'flarum/common/Component'
+import { Data } from '../ProcessData'
 
 export interface GeoIpBarAttrs extends ComponentAttrs {
-  code: string
-  region: string
-  isp: string
+  elements: Data
 }
 
 export default class GeoIpToolBar<
   CustomAttrs extends GeoIpBarAttrs = GeoIpBarAttrs
 > extends Component<CustomAttrs> {
   view() {
-    const { code, region, isp } = this.attrs
+    const { elements } = this.attrs
     return (
       <div className='userIp-container'>
         <div className='ip-locate' id='info-country'>
-          {`${region}, ${code}`}
+          {`${elements["region"]}, ${elements["code"]}`}
         </div>
         <div className='ip-locate' id='info-isp'>
-          {`${isp}`}
+          {`${elements["isp"]}`}
         </div>
       </div>
     )
