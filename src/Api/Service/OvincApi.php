@@ -21,7 +21,7 @@ class OvincApi implements GeoIpInterface
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'http://api.ip-city.ovinc.cn',
+            'base_uri' => 'https://api.ip-city.ovinc.cn',
         ]);
     }
     
