@@ -39,8 +39,8 @@ class GeoIp
         foreach ($services as $service) {
             if ($service->name() === $name) {
                 $this->serviceSelected = $service;
+                break;
             }
-            break;
         }
 
         if (! $this->serviceSelected) {
