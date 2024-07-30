@@ -13,6 +13,7 @@ namespace GBCLStudio\GeoIp\ServiceProvider;
 use Closure;
 use Flarum\Foundation\AbstractServiceProvider;
 use GBCLStudio\GeoIp\Api\GeoIpInterface;
+use GBCLStudio\GeoIp\Api\Service\IpInfo;
 use GBCLStudio\GeoIp\Api\Service\IpSb;
 
 class GeoIpServiceProvider extends AbstractServiceProvider
@@ -21,6 +22,7 @@ class GeoIpServiceProvider extends AbstractServiceProvider
     {
         $this->container->tag([
             IpSb::class,
+            IpInfo::class
         ], 'gbcl-userip.services');
 
         $this->container->singleton('gbcl-userip.services.admin', $this->map(function (GeoIpInterface $service) {

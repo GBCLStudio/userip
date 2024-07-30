@@ -33,13 +33,14 @@ class GeoIp
      */
     public function get(string $ip)
     {
+        $this->serviceSelected = $this->settings->get('gbcl-userip.service');
         $name = $this->settings->get('gbcl-userip.service');
         $services = resolve('container')->tagged('gbcl-userip.services');
 
         foreach ($services as $service) {
             if ($service->name() === $name) {
                 $this->serviceSelected = $service;
-                break;
+                continue;
             }
         }
 

@@ -64,6 +64,14 @@ export default class GeoipSettingsPage extends ExtensionPage {
                 ),
             })}
           </div>
+          {service === 'ipinfo' ?
+            this.buildSettingComponent({
+              type: 'string',
+              setting: 'gbcl-userip.service.ipinfo.key',
+              label: app.translator.trans('gbcl-userip.admin.service.ipinfo.key'),
+              required: true,
+            })
+            : []}
           {this.submitButton()}
         </div>
       </div>
