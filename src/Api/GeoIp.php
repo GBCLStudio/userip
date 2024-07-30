@@ -11,6 +11,7 @@
 namespace GBCLStudio\GeoIp\Api;
 
 use Flarum\Settings\SettingsRepositoryInterface;
+use GBCLStudio\GeoIp\Api\Service\BaseService;
 use GBCLStudio\GeoIp\ServiceResponse;
 
 class GeoIp
@@ -19,7 +20,6 @@ class GeoIp
      * @var SettingsRepositoryInterface
      */
     private SettingsRepositoryInterface $settings;
-    private mixed $serviceSelected;
 
     public function __construct(SettingsRepositoryInterface $settings)
     {
@@ -33,21 +33,25 @@ class GeoIp
      */
     public function get(string $ip)
     {
-        $this->serviceSelected = $this->settings->get('gbcl-userip.service');
+        $serviceSelected = $this->settings->get('gbcl-userip.service');
         $name = $this->settings->get('gbcl-userip.service');
         $services = resolve('container')->tagged('gbcl-userip.services');
 
         foreach ($services as $service) {
+            if (!$service instanceof BaseService) {
+                throw new \InvalidArgumentException(sprintf("%d should extends class %s", (string)$service, BaseService::class));
+            }
+            
             if ($service->name() === $name) {
-                $this->serviceSelected = $service;
-                continue;
+                $serviceSelected = $service;
+                break;
             }
         }
 
-        if (! $this->serviceSelected) {
+        if (!$serviceSelected) {
             return;
         }
 
-        return $this->serviceSelected->get($ip);
+        return $serviceSelected->get($ip);
     }
 }

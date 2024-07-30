@@ -12,18 +12,13 @@ namespace GBCLStudio\GeoIp\Api\Service;
 
 use GBCLStudio\GeoIp\Api\GeoIpInterface;
 use GBCLStudio\GeoIp\ServiceResponse;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-class IpSb implements GeoIpInterface
+class IpSb extends BaseService implements GeoIpInterface
 {
-    private Client $client;
-
-    public function __construct()
+    public function setBaseRequestUrl(): string
     {
-        $this->client = new Client([
-            'base_uri' => 'https://api.ip.sb/',
-        ]);
+        return 'https://api.ip.sb';
     }
 
     public function name(): string

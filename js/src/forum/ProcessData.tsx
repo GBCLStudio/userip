@@ -17,7 +17,7 @@ export type Data = {
 } & Record<string, NestedStringArray>
 
 export default class ProcessData {
-  private data: Data
+  private readonly data: Data
 
   constructor(ipInfo: ipinfo) {
     this.data = {

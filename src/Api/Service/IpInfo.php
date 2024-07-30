@@ -10,24 +10,18 @@
 
 namespace GBCLStudio\GeoIp\Api\Service;
 
-use Flarum\Settings\SettingsRepositoryInterface;
 use GBCLStudio\GeoIp\Api\GeoIpInterface;
 use GBCLStudio\GeoIp\ServiceResponse;
-use GuzzleHttp\Client;
 
-class IpInfo implements GeoIpInterface
+class IpInfo extends BaseService implements GeoIpInterface
 {
 
-    private Client $client;
-
-    public function __construct(protected SettingsRepositoryInterface $settings)
+    public function setBaseRequestUrl(): string
     {
-        $this->client = new Client([
-            'base_uri' => 'https://ipinfo.io/'
-        ]);
+        return 'https://ipinfo.io';
     }
 
-  /**
+    /**
      * @inheritDoc
      */
     public function name(): string
@@ -52,7 +46,7 @@ class IpInfo implements GeoIpInterface
         return (new ServiceResponse())
             ->setCountryCode($body->country)
             ->setRegion($body->region)
-            ->setIsp($ispASN)
+            ->setIsp($ispASN[0])
             ->setAddress($ip);
     }
 }
