@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
+    "@rspack/cli": "^0.7.5",
+    "@rspack/core": "^0.7.5",
     "@types/mithril": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.44.0",
-    "flarum-tsconfig": "^1.0.2",
-    "flarum-webpack-config": "^2.0.2",
-    "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.4"
+    "flarum-rspack-config": "^1.0.0",
+    "flarum-tsconfig": "^1.0.2"
   },
   "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "dev": "rspack --mode development --watch",
+    "build": "rspack --mode production"
   }
 }
