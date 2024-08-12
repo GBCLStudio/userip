@@ -227,7 +227,21 @@
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/helper-simple-access" "^7.24.7"
 
-"@babel/plugin-transform-react-jsx@^7.25.2":
+"@babel/plugin-transform-react-display-name@^7.24.7":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-display-name/-/plugin-transform-react-display-name-7.24.7.tgz#9caff79836803bc666bcfe210aeb6626230c293b"
+  integrity sha512-H/Snz9PFxKsS1JLI4dJLtnJgCJRoo0AUm3chP6NYr+9En1JMKloheEiLIhlp5MDVznWo+H3AAC1Mc8lmUEpsgg==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.7"
+
+"@babel/plugin-transform-react-jsx-development@^7.24.7":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.24.7.tgz#eaee12f15a93f6496d852509a850085e6361470b"
+  integrity sha512-QG9EnzoGn+Qar7rxuW+ZOsbWOt56FvvI93xInqsZDC5fsekx1AlIO4KIJ5M+D0p0SqSH156EpmZyXq630B8OlQ==
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.24.7"
+
+"@babel/plugin-transform-react-jsx@^7.24.7", "@babel/plugin-transform-react-jsx@^7.25.2":
   version "7.25.2"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.25.2.tgz#e37e8ebfa77e9f0b16ba07fadcb6adb47412227a"
   integrity sha512-KQsqEAVBpU82NM/B/N9j9WOdphom1SZH3R+2V7INrQUH+V9EBFwZsEJl8eBIVeQE62FxJCc70jzEZwqU7RcVqA==
@@ -237,6 +251,14 @@
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/plugin-syntax-jsx" "^7.24.7"
     "@babel/types" "^7.25.2"
+
+"@babel/plugin-transform-react-pure-annotations@^7.24.7":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.24.7.tgz#bdd9d140d1c318b4f28b29a00fb94f97ecab1595"
+  integrity sha512-PLgBVk3fzbmEjBJ/u8kFzOqS9tUeDjiaWud/rRym/yjCo/M9cASPlnrd2ZmmZpQT40fOOrvR8jh+n8jikrOhNA==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-runtime@^7.24.7":
   version "7.24.7"
@@ -260,6 +282,18 @@
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.24.7"
     "@babel/plugin-syntax-typescript" "^7.24.7"
+
+"@babel/preset-react@^7.24.7":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.24.7.tgz#480aeb389b2a798880bf1f889199e3641cbb22dc"
+  integrity sha512-AAH4lEkpmzFWrGVlHaxJB7RLH21uPQ9+He+eFLWHmF9IuFQVugz8eAsamaW0DXRrTfco5zj1wWtpdcXJUOfsag==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-validator-option" "^7.24.7"
+    "@babel/plugin-transform-react-display-name" "^7.24.7"
+    "@babel/plugin-transform-react-jsx" "^7.24.7"
+    "@babel/plugin-transform-react-jsx-development" "^7.24.7"
+    "@babel/plugin-transform-react-pure-annotations" "^7.24.7"
 
 "@babel/preset-typescript@^7.24.7":
   version "7.24.7"
@@ -2156,14 +2190,15 @@ find-up@^6.3.0:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
 
-flarum-rspack-config@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/flarum-rspack-config/-/flarum-rspack-config-1.1.0.tgz#54734701ee64ab43f0bd8d3ec1bbdbb0b9c41b4c"
-  integrity sha512-MihhJtYX1TIuD+0htEr5eAiXwcFlhoGKPFSyWomgVOtQaa6KXiHWMMQJmat63SicjGo+xIYPiwK2UaAFIX9EHg==
+flarum-rspack-config@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/flarum-rspack-config/-/flarum-rspack-config-1.1.1.tgz#b91f43e489191a3ffdf7a3622181d2b8b8f366ea"
+  integrity sha512-i/ieg0KW5AtCjoNfxrFaMbWhjpiXlt3Ruag8t0WDM35ce3eklCHQJX27jn+g+iydYMhTMvyRyOBjXfLxLGUzLQ==
   dependencies:
     "@babel/core" "^7.25.2"
     "@babel/plugin-transform-react-jsx" "^7.25.2"
     "@babel/plugin-transform-runtime" "^7.24.7"
+    "@babel/preset-react" "^7.24.7"
     "@babel/preset-typescript" "^7.24.7"
     "@babel/runtime" "^7.25.0"
     "@rsdoctor/rspack-plugin" "^0.3.11"
